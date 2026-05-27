@@ -390,18 +390,18 @@ function ContactSection() {
 
 export default ContactSection;
 
-
 /* ─── Contact-specific floating particles ─── */
 function ContactParticles() {
   const particles = Array.from({ length: 18 }, (_, i) => ({
     id: i,
-    size: Math.random() * 3 + 1.5,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 8 + 10,
-    delay: Math.random() * 5,
-    opacity: Math.random() * 0.25 + 0.05,
+    size: ((i * 7) % 30) / 10 + 1.5,
+    x: (i * 23) % 100,
+    y: (i * 17) % 100,
+    duration: ((i * 13) % 80) / 10 + 10,
+    delay: ((i * 9) % 50) / 10,
+    opacity: ((i * 3) % 25) / 100 + 0.05,
     color: i % 3 === 0 ? '#D7263D' : i % 3 === 1 ? '#4488ff' : '#ffffff',
+    xOffset: (i % 2 === 0) ? 10 : -10,
   }));
 
   return (
@@ -411,7 +411,7 @@ function ContactParticles() {
           key={p.id}
           animate={{
             y: [0, -30, 0],
-            x: [0, Math.random() > 0.5 ? 10 : -10, 0],
+            x: [0, p.xOffset, 0],
             opacity: [p.opacity, p.opacity * 1.8, p.opacity],
           }}
           transition={{

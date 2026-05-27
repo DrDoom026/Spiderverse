@@ -13,13 +13,13 @@ const Particles = ({ count = 38 }) => {
     () =>
       Array.from({ length: count }).map((_, i) => ({
         id: i,
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        size: Math.random() * 3 + 1.2,
-        duration: Math.random() * 8 + 6,
-        delay: Math.random() * 4,
-        color: COLORS[Math.floor(Math.random() * COLORS.length)],
-        drift: (Math.random() - 0.5) * 40,
+        left: (i * 17) % 100,
+        top: (i * 23) % 100,
+        size: ((i * 7) % 30) / 10 + 1.2,
+        duration: ((i * 13) % 80) / 10 + 6,
+        delay: ((i * 9) % 40) / 10,
+        color: COLORS[(i * 3) % COLORS.length],
+        drift: ((i * 11) % 40) - 20,
       })),
     [count]
   );

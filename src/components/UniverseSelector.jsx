@@ -61,7 +61,7 @@ const cardVariants = {
   }),
 };
 
-const UniverseSelector = forwardRef(({ onNavigate, ...props }, ref) => {
+const UniverseSelector = forwardRef(({ onNavigate }, ref) => {
   const handleCardClick = (u) => {
     // Portal transition effect
     const overlay = document.createElement('div');
@@ -99,6 +99,10 @@ const UniverseSelector = forwardRef(({ onNavigate, ...props }, ref) => {
       /* Navigate to the Contact page after the portal animation */
       if (u.key === 'contact' && onNavigate) {
         onNavigate('contact');
+      }
+      /* Navigate to the Gallery page after the portal animation */
+      if (u.key === 'gallery' && onNavigate) {
+        onNavigate('gallery');
       }
       overlay.style.opacity = '0';
       overlay.style.transition = 'opacity 0.4s ease';
