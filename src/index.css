@@ -84,21 +84,49 @@ body {
 
 /* ========== GLITCH TEXT ========== */
 @keyframes glitch {
-  0%, 100% {
-    clip-path: inset(0 0 0 0);
-    transform: translate(0);
-  }
-  5% {
-    clip-path: inset(20% 0 60% 0);
-    transform: translate(-3px, 1px);
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-2px, 2px);
   }
   10% {
-    clip-path: inset(50% 0 20% 0);
-    transform: translate(3px, -1px);
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(1px, -3px);
   }
-  15% {
-    clip-path: inset(0 0 0 0);
-    transform: translate(0);
+  20% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(-1px, 1px);
+  }
+  30% {
+    clip-path: inset(75% 0 12% 0);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip-path: inset(10% 0 85% 0);
+    transform: translate(-2px, -1px);
+  }
+  50% {
+    clip-path: inset(55% 0 35% 0);
+    transform: translate(3px, 2px);
+  }
+  60% {
+    clip-path: inset(30% 0 62% 0);
+    transform: translate(-1px, -3px);
+  }
+  70% {
+    clip-path: inset(85% 0 5% 0);
+    transform: translate(2px, 1px);
+  }
+  80% {
+    clip-path: inset(15% 0 78% 0);
+    transform: translate(-3px, -2px);
+  }
+  90% {
+    clip-path: inset(62% 0 28% 0);
+    transform: translate(1px, 3px);
+  }
+  100% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-2px, 2px);
   }
 }
 
@@ -107,23 +135,23 @@ body {
     transform: skewX(0deg);
   }
   20% {
-    transform: skewX(-2deg);
+    transform: skewX(-3deg);
   }
   40% {
-    transform: skewX(1.5deg);
+    transform: skewX(2deg);
   }
   60% {
-    transform: skewX(-0.5deg);
+    transform: skewX(-1deg);
   }
   80% {
-    transform: skewX(0.8deg);
+    transform: skewX(1.5deg);
   }
 }
 
 .glitch-text {
   position: relative;
   display: inline-block;
-  animation: glitch-skew 4s ease-in-out infinite;
+  animation: glitch-skew 3s ease-in-out infinite;
 }
 
 .glitch-text::before,
@@ -139,18 +167,14 @@ body {
 
 .glitch-text::before {
   color: #00F0FF;
-  animation: glitch 3s infinite linear;
-  clip-path: inset(40% 0 40% 0);
-  transform: translate(-2px, -1px);
-  opacity: 0.7;
+  animation: glitch 1.5s infinite linear;
+  opacity: 0.85;
 }
 
 .glitch-text::after {
   color: #D7263D;
-  animation: glitch 3s infinite linear reverse;
-  clip-path: inset(60% 0 10% 0);
-  transform: translate(2px, 1px);
-  opacity: 0.7;
+  animation: glitch 1.2s infinite linear reverse;
+  opacity: 0.85;
 }
 
 /* ========== FLOATING ANIMATION ========== */

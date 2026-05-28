@@ -1,490 +1,401 @@
 /* ================================================================
-   CONTACT SECTION — Spider-Verse Cinematic Contact Page
+   CONTACT PAGE · LEGO SPIDER-MAN · EARTH-LEGO
+   Warm, Playful, Animated LEGO Brand Sticker Aesthetic
    ================================================================ */
 
-/* ─── Back button ─── */
-.contact-back-btn {
-  position: fixed;
-  top: 24px;
-  left: 24px;
-  z-index: 50;
-}
-
-/* ─── Section container ─── */
-.contact-section {
+/* ========== BASE CONTAINER ========== */
+.contact-hero {
   position: relative;
-  min-height: 100vh;
-  padding: 80px 24px 60px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #f5f5f5;
+  color: #1a1a1a;
 }
 
-/* ─── Background ─── */
-.contact-bg {
+/* ========== BACKGROUND FULL BLEED ========== */
+.contact-hero__bg {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
 }
 
-.contact-bg img {
+.contact-hero__bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(2px) brightness(0.45) saturate(1.2);
-}
-
-.contact-bg-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    180deg,
-    rgba(5, 5, 5, 0.85) 0%,
-    rgba(5, 5, 5, 0.4) 30%,
-    rgba(5, 5, 5, 0.3) 60%,
-    rgba(5, 5, 5, 0.8) 100%
-  );
-}
-
-.contact-vignette {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 40%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
-}
-
-/* ─── Content wrapper ─── */
-.contact-content {
-  position: relative;
-  z-index: 5;
-  max-width: 1400px;
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 48px;
-}
-
-/* ================================================================
-   CONTACT TITLE
-   ================================================================ */
-.contact-title-wrapper {
-  text-align: center;
-  position: relative;
-}
-
-.contact-title {
-  font-size: clamp(4rem, 12vw, 10rem);
-  line-height: 0.9;
-  letter-spacing: 0.04em;
-  color: #ffffff;
-  margin: 0;
-  position: relative;
-  display: inline-block;
-
-  /* Layered comic shadows — red, blue, black depth */
-  text-shadow:
-    /* White highlight edge */
-    -1px -1px 0 rgba(255, 255, 255, 0.5),
-    /* Red primary shadow */
-    3px 3px 0 #D7263D,
-    4px 4px 0 #b01e30,
-    /* Blue accent shadow */
-    -2px 2px 0 rgba(30, 58, 138, 0.6),
-    /* Deep black drop */
-    6px 6px 0 rgba(0, 0, 0, 0.7),
-    7px 7px 0 rgba(0, 0, 0, 0.4),
-    /* Ambient glow */
-    0 0 40px rgba(215, 38, 61, 0.25),
-    0 0 80px rgba(215, 38, 61, 0.1);
-  
-  /* Comic ink texture via paint-order */
-  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
-  paint-order: stroke fill;
-}
-
-/* Comic halftone dots inside title */
-.contact-title::before {
-  content: 'CONTACT';
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: transparent;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
-  background-size: 4px 4px;
-  -webkit-background-clip: text;
-  background-clip: text;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Decorative divider under title */
-.contact-title-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.divider-line {
+  object-position: center;
   display: block;
-  width: 80px;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(215, 38, 61, 0.6),
-    rgba(30, 58, 138, 0.4),
-    transparent
-  );
-  border-radius: 1px;
+  filter: none !important;
 }
 
-/* ================================================================
-   CONTACT GRID (buttons + spider-man)
-   ================================================================ */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  width: 100%;
-}
+/* ========== GRADIENT LAYERS & TEXTURES ========== */
 
-@media (max-width: 900px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-}
-
-/* ─── Buttons area ─── */
-.contact-buttons-area {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.contact-buttons-row {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.contact-buttons-row-bottom {
-  padding-left: 30px;
-}
-
-@media (max-width: 600px) {
-  .contact-buttons-row {
-    flex-direction: column;
-  }
-  .contact-buttons-row-bottom {
-    padding-left: 0;
-  }
-}
-
-/* ================================================================
-   CONTACT BUTTONS — Comic book style
-   ================================================================ */
-.contact-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 24px;
-  border-radius: 8px;
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  background: rgba(10, 10, 10, 0.7);
-  backdrop-filter: blur(8px);
-  color: #fff;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  flex: 1;
-  min-width: 140px;
-
-  /* Slightly sketchy/comic border feel */
-  outline: 1px solid rgba(255, 255, 255, 0.04);
-  outline-offset: -3px;
-}
-
-.contact-btn:hover {
-  border-color: var(--btn-accent, #D7263D);
-  box-shadow:
-    0 0 15px color-mix(in srgb, var(--btn-accent, #D7263D) 30%, transparent),
-    0 4px 20px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-/* Background gradient on hover */
-.contact-btn::before {
-  content: '';
+/* Very light left-edge gradient overlay for text readability */
+.contact-hero__left-gradient {
   position: absolute;
   inset: 0;
-  background: var(--btn-bg, linear-gradient(135deg, #D7263D, #1E3A8A));
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  border-radius: inherit;
-}
-
-.contact-btn:hover::before {
-  opacity: 0.25;
-}
-
-/* Sketchy border overlay */
-.contact-btn::after {
-  content: '';
-  position: absolute;
-  inset: 2px;
-  border: 1px dashed rgba(255, 255, 255, 0.06);
-  border-radius: 6px;
-  pointer-events: none;
-}
-
-/* Button glow */
-.contact-btn-glow {
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle at center,
-    color-mix(in srgb, var(--btn-accent, #D7263D) 8%, transparent),
-    transparent 60%
-  );
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
-.contact-btn:hover .contact-btn-glow {
-  opacity: 1;
-}
-
-.contact-btn-icon {
-  position: relative;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--btn-accent, #fff) 40%, transparent));
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.2) 35%,
+    transparent 65%
+  );
 }
 
-.contact-btn-label {
-  position: relative;
-  z-index: 2;
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  font-weight: 400;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-/* Halftone dots decoration on buttons */
-.contact-btn-halftone {
+/* Thin bottom gradient overlay for location text readability */
+.contact-hero__bottom-gradient {
   position: absolute;
-  bottom: -5px;
-  right: -5px;
-  width: 40px;
-  height: 40px;
-  opacity: 0.06;
-  background-image: radial-gradient(circle, var(--btn-accent, #4488ff) 0.8px, transparent 0.8px);
-  background-size: 4px 4px;
-  pointer-events: none;
-  transform: rotate(-15deg);
-}
-
-/* ================================================================
-   LEGO SPIDER-MAN AREA
-   ================================================================ */
-.contact-spiderman-area {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.spiderman-container {
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-  aspect-ratio: 16 / 12;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.spiderman-glow {
-  position: absolute;
-  inset: 10%;
-  border-radius: 20px;
-  background: radial-gradient(
-    ellipse at 50% 60%,
-    rgba(215, 38, 61, 0.15) 0%,
-    rgba(30, 58, 138, 0.1) 40%,
-    transparent 70%
-  );
-  filter: blur(30px);
-  pointer-events: none;
-  animation: glowPulse 6s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-
-.spiderman-image {
-  position: relative;
+  inset: 0;
   z-index: 2;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  user-select: none;
   pointer-events: none;
-  filter: 
-    drop-shadow(0 10px 40px rgba(0, 0, 0, 0.5))
-    drop-shadow(0 0 20px rgba(215, 38, 61, 0.15))
-    contrast(1.05)
-    saturate(1.1);
-  /* Soft edge blend */
-  mask-image: radial-gradient(
-    ellipse 85% 85% at 50% 50%,
-    #000 60%,
-    rgba(0,0,0,0.8) 75%,
-    transparent 100%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 85% 85% at 50% 50%,
-    #000 60%,
-    rgba(0,0,0,0.8) 75%,
-    transparent 100%
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.3) 0%,
+    transparent 30%
   );
 }
 
-.spiderman-web-decor {
+/* Cinematic film grain overlay (soft 0.03 opacity keeps it playful) */
+.contact-hero__grain {
+  position: absolute;
+  inset: -20%;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px;
+  animation: grain-shift 6s steps(8) infinite;
+}
+
+/* ========== TEXT & BUTTONS CONTENT ========== */
+
+.contact-hero__overlay {
   position: absolute;
   bottom: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-  z-index: 3;
-  opacity: 0.6;
-}
-
-/* ================================================================
-   ENDING MESSAGE
-   ================================================================ */
-.contact-ending {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-  max-width: 700px;
-  margin-top: 20px;
-}
-
-.ending-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.15),
-    rgba(215, 38, 61, 0.3),
-    rgba(255, 255, 255, 0.15),
-    transparent
-  );
-}
-
-.ending-text {
-  font-size: clamp(0.9rem, 2vw, 1.15rem);
-  letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.65);
-  white-space: nowrap;
-  margin: 0;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
-  position: relative;
-}
-
-.ending-highlight {
-  color: #D7263D;
-  font-weight: 700;
-  text-shadow:
-    0 0 10px rgba(215, 38, 61, 0.4),
-    0 0 30px rgba(215, 38, 61, 0.15);
-  position: relative;
-}
-
-/* Subtle underline glow on MULTIVERSE */
-.ending-highlight::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #D7263D, transparent);
-  opacity: 0.5;
-  border-radius: 1px;
+  z-index: 10;
+  padding: 0 48px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  height: 100%;
+  pointer-events: none;
 }
 
-/* ================================================================
-   RESPONSIVE
-   ================================================================ */
-@media (max-width: 900px) {
-  .contact-spiderman-area {
-    order: -1;
+/* Glitchy "Lego Earth" Badge in blocky Bungee font */
+.contact-hero__badge {
+  font-family: 'Bungee', cursive;
+  font-size: 15px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  animation: glitch 4s infinite;
+}
+
+.contact-hero__eyebrow {
+  font-family: 'Special Elite', cursive;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(26, 26, 26, 0.7);
+  margin-bottom: 18px;
+}
+
+/* Animated 3D LEGO Title Container */
+.contact-hero__title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0 0 16px 0;
+  pointer-events: auto;
+}
+
+/* Individual letter span styles: 3D blocky look and spring transitions */
+.contact-hero__title span {
+  display: inline-block;
+  font-family: 'Bungee', cursive;
+  font-size: clamp(3.5rem, 8vw, 90px);
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  animation: brick-float 4s ease-in-out infinite;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease;
+}
+
+.contact-hero__title span:hover {
+  transform: translateY(-16px) scale(1.15) rotate(4deg);
+  filter: brightness(1.1);
+}
+
+/* Primary brick colors and isometric 3D offsets */
+.char-c  { color: #E3000B; animation-delay: 0s;    text-shadow: 1px 1px 0 #b00008, 2px 2px 0 #b00008, 3px 3px 0 #b00008, 4px 4px 0 #b00008, 5px 5px 0 #1a1a1a, 6px 6px 0 #1a1a1a, 7px 7px 8px rgba(0,0,0,0.15); }
+.char-o  { color: #FFD400; animation-delay: 0.15s; text-shadow: 1px 1px 0 #cca200, 2px 2px 0 #cca200, 3px 3px 0 #cca200, 4px 4px 0 #cca200, 5px 5px 0 #1a1a1a, 6px 6px 0 #1a1a1a, 7px 7px 8px rgba(0,0,0,0.15); }
+.char-n  { color: #0055A5; animation-delay: 0.3s;  text-shadow: 1px 1px 0 #003d7a, 2px 2px 0 #003d7a, 3px 3px 0 #003d7a, 4px 4px 0 #003d7a, 5px 5px 0 #1a1a1a, 6px 6px 0 #1a1a1a, 7px 7px 8px rgba(0,0,0,0.15); }
+.char-t  { color: #009647; animation-delay: 0.45s; text-shadow: 1px 1px 0 #006b32, 2px 2px 0 #006b32, 3px 3px 0 #006b32, 4px 4px 0 #006b32, 5px 5px 0 #1a1a1a, 6px 6px 0 #1a1a1a, 7px 7px 8px rgba(0,0,0,0.15); }
+.char-a  { color: #F57F17; animation-delay: 0.6s;  text-shadow: 1px 1px 0 #bf5f00, 2px 2px 0 #bf5f00, 3px 3px 0 #bf5f00, 4px 4px 0 #bf5f00, 5px 5px 0 #1a1a1a, 6px 6px 0 #1a1a1a, 7px 7px 8px rgba(0,0,0,0.15); }
+.char-c2 { color: #E3000B; animation-delay: 0.75s; text-shadow: 1px 1px 0 #b00008, 2px 2px 0 #b00008, 3px 3px 0 #b00008, 4px 4px 0 #b00008, 5px 5px 0 #1a1a1a, 6px 6px 0 #1a1a1a, 7px 7px 8px rgba(0,0,0,0.15); }
+.char-t2 { color: #FFD400; animation-delay: 0.9s;  text-shadow: 1px 1px 0 #cca200, 2px 2px 0 #cca200, 3px 3px 0 #cca200, 4px 4px 0 #cca200, 5px 5px 0 #1a1a1a, 6px 6px 0 #1a1a1a, 7px 7px 8px rgba(0,0,0,0.15); }
+
+.contact-hero__quote {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(26, 26, 26, 0.6);
+  max-width: 480px;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+/* ========== STACKED SOCIAL BUTTONS ========== */
+
+.contact-hero__buttons-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+.contact-sticker-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: 220px;
+  padding: 11px 20px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 4px;
+  color: #1a1a1a;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-sticker-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.3);
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contact-sticker-btn__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: #1a1a1a;
+  flex-shrink: 0;
+}
+
+.contact-sticker-btn__icon svg {
+  width: 100%;
+  height: 100%;
+  color: inherit;
+}
+
+.contact-sticker-btn__label {
+  line-height: 1;
+}
+
+/* ========== METADATA LABELS ========== */
+
+/* Bottom-Left label (same position as noir-atmo__first-label) */
+.contact-hero__bottom-left-label {
+  position: absolute;
+  bottom: 28px;
+  left: 32px;
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.35);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Funky Bottom-Center multiversal badge (LEGO branded colorway & wiggle motion) */
+.contact-hero__bottom-center-label {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Bungee', cursive;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  color: #FFD400; /* LEGO Yellow */
+  text-shadow:
+    -2px -2px 0 #1a1a1a,
+     2px -2px 0 #1a1a1a,
+    -2px  2px 0 #1a1a1a,
+     2px  2px 0 #1a1a1a,
+     4px  4px 0 rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: lego-wiggle 4s ease-in-out infinite;
+}
+
+/* ========== STICKER BACK BUTTON ========== */
+
+.contact-back-btn {
+  position: fixed;
+  top: 32px;
+  left: 32px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid #1a1a1a !important;
+  border-radius: 4px !important;
+  color: #1a1a1a !important;
+  font-family: 'Special Elite', cursive !important;
+  font-size: 11px !important;
+  letter-spacing: 0.15em !important;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.contact-back-btn:hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+.contact-back-btn span {
+  pointer-events: none;
+}
+
+/* ========== KEYFRAMES ========== */
+
+/* Gentle continuous floating motion for individual brick characters */
+@keyframes brick-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
   }
-  
-  .spiderman-container {
-    max-width: 320px;
-  }
-  
-  .contact-buttons-row-bottom {
-    padding-left: 0;
-  }
-  
-  .contact-ending {
-    gap: 12px;
+  50% {
+    transform: translateY(-8px) rotate(-1deg);
   }
 }
 
-@media (max-width: 600px) {
-  .contact-section {
-    padding: 60px 16px 40px;
+/* High-quality chromatic glitch aberration text effect for "Lego Earth" */
+@keyframes glitch {
+  0%, 92%, 100% {
+    text-shadow: 1px 0 0 rgba(227, 0, 11, 0.4), -1px 0 0 rgba(0, 85, 165, 0.4);
+    transform: skew(0deg);
+  }
+  93% {
+    text-shadow: 3.5px 0 0 rgba(227, 0, 11, 0.85), -3.5px 0 0 rgba(0, 85, 165, 0.85);
+    transform: skew(2deg);
+  }
+  95% {
+    text-shadow: -2.5px 2px 0 rgba(227, 0, 11, 0.8), 2.5px -2px 0 rgba(0, 85, 165, 0.8);
+    transform: skew(-3deg);
+  }
+  97% {
+    text-shadow: 2px -1px 0 rgba(227, 0, 11, 0.75), -2px 1px 0 rgba(0, 85, 165, 0.75);
+    transform: skew(1deg);
+  }
+}
+
+/* Cartoon-style scale and rotate sway for the bottom center banner */
+@keyframes lego-wiggle {
+  0%, 100% {
+    transform: translateX(-50%) rotate(-1deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(1deg) scale(1.04);
+  }
+}
+
+/* ========== RESPONSIVE OVERRIDES ========== */
+
+@media (max-width: 1024px) {
+  .contact-hero__overlay {
+    padding: 0 32px 80px;
+  }
+  .contact-back-btn {
+    top: 24px;
+    left: 24px;
+  }
+  .contact-hero__bottom-left-label {
+    left: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-hero__overlay {
+    padding: 0 20px 80px;
   }
   
-  .contact-content {
-    gap: 32px;
+  .contact-hero__title span {
+    font-size: clamp(3rem, 12vw, 5.5rem);
   }
   
-  .contact-title {
-    font-size: clamp(3rem, 16vw, 5rem) !important;
-    text-shadow:
-      -1px -1px 0 rgba(255, 255, 255, 0.4),
-      2px 2px 0 #D7263D,
-      3px 3px 0 #b01e30,
-      -1px 1px 0 rgba(30, 58, 138, 0.5),
-      4px 4px 0 rgba(0, 0, 0, 0.6),
-      0 0 30px rgba(215, 38, 61, 0.2);
+  .contact-hero__quote {
+    margin-bottom: 20px;
+    font-size: 13px;
   }
   
-  .contact-btn {
-    padding: 12px 18px;
+  .contact-back-btn {
+    top: 16px;
+    left: 16px;
+    padding: 10px 16px;
+    font-size: 10px;
   }
   
-  .contact-btn-label {
-    font-size: 12px;
+  .contact-hero__bottom-left-label {
+    left: 20px;
+    bottom: 20px;
+    font-size: 9px;
   }
   
-  .ending-text {
-    white-space: normal;
-    text-align: center;
+  .contact-hero__bottom-center-label {
+    bottom: 20px;
+    font-size: 16px;
+  }
+
+  .contact-sticker-btn {
+    width: 200px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-height: 600px) {
+  .contact-hero__overlay {
+    padding-bottom: 50px;
+  }
+  .contact-hero__quote {
+    display: none;
+  }
+  .contact-hero__buttons-column {
+    flex-flow: row wrap;
+    max-width: 500px;
+  }
+  .contact-sticker-btn {
+    width: auto;
+    flex: 1 1 120px;
   }
 }
