@@ -4,6 +4,7 @@ import './index.css';
 import Landing from './pages/Landing';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
+import Projects from './pages/Projects';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('landing');
@@ -30,6 +31,12 @@ function App() {
       {currentPage === 'gallery' && (
         <Gallery
           key="gallery"
+          onBack={() => navigateTo('landing')}
+        />
+      )}
+      {currentPage === 'projects' && (
+        <Projects
+          key="projects"
           onBack={() => navigateTo('landing')}
         />
       )}

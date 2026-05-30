@@ -1,0 +1,1061 @@
+/* ============================================================
+   PROJECTS · SPIDER-MAN 2099 · EARTH-928
+   Mission Archive — Cold, Futuristic, Aggressive, Neon-Charged
+   ============================================================ */
+
+/* ========== 2099 GLOBAL ATMOSPHERE ========== */
+.projects-2099 {
+  position: relative;
+  background: #05000f;
+  min-height: 100vh;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* ========== FILM GRAIN — SVG feTurbulence ========== */
+.projects-grain {
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px;
+  animation: grain-shift 8s steps(10) infinite;
+  mix-blend-mode: overlay;
+}
+
+/* ========== 2099 NAVBAR ========== */
+.projects-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(5, 0, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 60, 60, 0.1);
+}
+
+.projects-navbar__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.projects-navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.projects-navbar__logo-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.projects-navbar__logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-navbar__logo-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.2em;
+  color: #fff;
+  line-height: 1;
+}
+
+.projects-navbar__logo-earth {
+  font-family: 'Special Elite', cursive;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: #ff3c3c;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.projects-navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.projects-navbar__link {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.projects-navbar__link:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.projects-navbar__link--active {
+  color: #ff3c3c;
+  position: relative;
+}
+
+.projects-navbar__link--active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #ff3c3c;
+  box-shadow: 0 0 8px rgba(255, 60, 60, 0.5);
+}
+
+.projects-navbar__dots {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  width: 24px;
+}
+
+.projects-navbar__dot {
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 60, 60, 0.3);
+  border-radius: 50%;
+}
+
+
+/* ================================================================
+   ZONE 1: HERO HEADER — 90vh portal background
+   ================================================================ */
+.projects-hero {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.projects-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.projects-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+/* Gradient overlay on hero background */
+.projects-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 0, 15, 0.55) 0%,
+    rgba(5, 0, 15, 0.75) 60%,
+    rgba(5, 0, 15, 1) 100%
+  );
+}
+
+/* Film grain on hero */
+.projects-hero__grain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px;
+}
+
+/* Hero text content — bottom-left */
+.projects-hero__content {
+  position: relative;
+  z-index: 4;
+  padding: 0 48px 80px;
+  max-width: 700px;
+}
+
+.projects-hero__eyebrow {
+  font-family: 'Special Elite', cursive;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: #ff3c3c;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px rgba(255, 60, 60, 0.3);
+}
+
+.projects-hero__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 10vw, 120px);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  color: #fff;
+  margin: 0 0 24px 0;
+  text-shadow: 0 0 40px rgba(255, 60, 60, 0.4);
+  display: flex;
+  align-items: center;
+}
+
+/* Spider symbol replacing the O */
+.projects-hero__spider-o {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 0.9em;
+  height: 0.9em;
+  margin: 0 -0.02em;
+}
+
+.projects-hero__spider-o svg,
+.projects-hero__spider-o img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(255, 60, 60, 0.6));
+}
+
+.projects-hero__subtitle {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.7;
+}
+
+/* Floating Spider-Man 2099 figure — right side */
+.projects-hero__figure {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 85%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.projects-hero__figure img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  mask-image: linear-gradient(
+    to left,
+    transparent 0%,
+    rgba(0, 0, 0, 0.1) 20%,
+    black 60%
+  );
+  -webkit-mask-image: linear-gradient(
+    to left,
+    transparent 0%,
+    rgba(0, 0, 0, 0.1) 20%,
+    black 60%
+  );
+}
+
+
+/* ================================================================
+   ZONE 2: PROJECT CARDS — Timeline Layout
+   ================================================================ */
+.projects-section {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 48px 120px;
+}
+
+/* Timeline vertical line */
+.projects-timeline {
+  position: relative;
+  padding-left: 80px;
+}
+
+.projects-timeline::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 60, 60, 0.2);
+}
+
+/* Timeline node */
+.project-node {
+  position: relative;
+  margin-bottom: 80px;
+}
+
+.project-node:last-child {
+  margin-bottom: 0;
+}
+
+/* Year + number on the left side of timeline */
+.project-node__marker {
+  position: absolute;
+  left: -80px;
+  top: 0;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-node__year {
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #ff3c3c;
+  margin-bottom: 4px;
+}
+
+.project-node__number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 64px;
+  line-height: 1;
+  color: #ff3c3c;
+  text-shadow: 0 0 20px rgba(255, 60, 60, 0.3);
+}
+
+/* Glowing dot on the timeline */
+.project-node__dot {
+  position: absolute;
+  left: -56px;
+  top: 38px;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%);
+}
+
+.project-node__dot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #ff3c3c;
+  box-shadow: 0 0 10px #ff3c3c, 0 0 20px rgba(255, 60, 60, 0.4);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px #ff3c3c, 0 0 20px rgba(255, 60, 60, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 15px #ff3c3c, 0 0 35px rgba(255, 60, 60, 0.5);
+    transform: scale(1.2);
+  }
+}
+
+
+/* ================================================================
+   PROJECT CARD
+   ================================================================ */
+.project-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 60, 60, 0.12);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project-card:hover {
+  border-color: rgba(255, 60, 60, 0.35);
+  box-shadow: 0 0 30px rgba(255, 60, 60, 0.08);
+}
+
+/* Close icon top-right */
+.project-card__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  color: rgba(255, 60, 60, 0.25);
+  cursor: default;
+  z-index: 5;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .project-card__close {
+  color: rgba(255, 60, 60, 0.5);
+}
+
+/* Two-column layout inside card */
+.project-card__inner {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  min-height: 320px;
+}
+
+/* Left column — screenshot */
+.project-card__image-col {
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid rgba(255, 60, 60, 0.08);
+}
+
+.project-card__image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.project-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.project-card:hover .project-card__image {
+  transform: scale(1.03);
+}
+
+/* Corner brackets on image */
+.project-card__image-wrapper::before,
+.project-card__image-wrapper::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.project-card__image-wrapper::before {
+  top: 12px;
+  left: 12px;
+  width: 20px;
+  height: 20px;
+  border-top: 1px solid rgba(255, 60, 60, 0.4);
+  border-left: 1px solid rgba(255, 60, 60, 0.4);
+}
+
+.project-card__image-wrapper::after {
+  bottom: 12px;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  border-bottom: 1px solid rgba(255, 60, 60, 0.4);
+  border-right: 1px solid rgba(255, 60, 60, 0.4);
+}
+
+/* Additional corner brackets (via pseudo on parent) */
+.project-card__image-col::before,
+.project-card__image-col::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.project-card__image-col::before {
+  top: 12px;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  border-top: 1px solid rgba(255, 60, 60, 0.4);
+  border-right: 1px solid rgba(255, 60, 60, 0.4);
+}
+
+.project-card__image-col::after {
+  bottom: 12px;
+  left: 12px;
+  width: 20px;
+  height: 20px;
+  border-bottom: 1px solid rgba(255, 60, 60, 0.4);
+  border-left: 1px solid rgba(255, 60, 60, 0.4);
+}
+
+/* Scanline hover effect on image */
+.project-card__scanline {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 60, 60, 0.03) 2px,
+    rgba(255, 60, 60, 0.03) 4px
+  );
+}
+
+.project-card:hover .project-card__scanline {
+  opacity: 1;
+}
+
+/* Featured badge */
+.project-card__featured {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 4;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #fff;
+  background: #ff3c3c;
+  padding: 4px 12px;
+  box-shadow: 0 0 12px rgba(255, 60, 60, 0.4);
+}
+
+/* Dark border on image */
+.project-card__image-border {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 60, 60, 0.15);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ========== FUTURISTIC CARD PLACEHOLDER ========== */
+.project-card__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(5, 0, 15, 1) 0%,
+    rgba(15, 2, 25, 1) 40%,
+    rgba(25, 5, 10, 0.95) 100%
+  );
+  z-index: 1;
+  gap: 12px;
+  overflow: hidden;
+}
+
+/* Dot grid background */
+.project-card__placeholder-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: radial-gradient(circle, #ff3c3c 0.5px, transparent 0.5px);
+  background-size: 12px 12px;
+}
+
+/* Large project number */
+.project-card__placeholder-id {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 80px;
+  line-height: 1;
+  color: rgba(255, 60, 60, 0.08);
+  position: relative;
+  z-index: 2;
+  letter-spacing: 0.1em;
+}
+
+/* Project title label */
+.project-card__placeholder-label {
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: rgba(255, 60, 60, 0.35);
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+
+/* Decorative animated lines */
+.project-card__placeholder-lines {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 2;
+}
+
+.project-card__placeholder-lines div {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 60, 60, 0.2) 0%, rgba(255, 60, 60, 0.05) 60%, transparent 100%);
+  border-radius: 1px;
+}
+
+.project-card__placeholder-lines div:nth-child(1) { width: 70%; }
+.project-card__placeholder-lines div:nth-child(2) { width: 45%; }
+.project-card__placeholder-lines div:nth-child(3) { width: 85%; }
+.project-card__placeholder-lines div:nth-child(4) { width: 30%; }
+.project-card__placeholder-lines div:nth-child(5) { width: 55%; }
+
+/* Animated scan line on placeholder */
+.project-card__placeholder::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #ff3c3c 50%, transparent 100%);
+  box-shadow: 0 0 15px rgba(255, 60, 60, 0.3), 0 0 30px rgba(255, 60, 60, 0.1);
+  animation: scan-line 4s ease-in-out infinite;
+  z-index: 3;
+}
+
+@keyframes scan-line {
+  0% { top: -2%; }
+  50% { top: 102%; }
+  100% { top: -2%; }
+}
+
+
+/* Right column — project info */
+.project-card__info {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.project-card__type {
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #ff3c3c;
+  text-transform: uppercase;
+}
+
+.project-card__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  letter-spacing: 0.04em;
+  color: #fff;
+  line-height: 1;
+  margin: 0;
+}
+
+.project-card__desc {
+  font-family: 'Crimson Pro', serif;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Tech stack section */
+.project-card__tech-label,
+.project-card__status-label {
+  font-family: 'Special Elite', cursive;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: #ff3c3c;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.project-card__tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.project-card__tech-tag {
+  font-family: 'Special Elite', cursive;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 60, 60, 0.3);
+  background: rgba(255, 60, 60, 0.06);
+  padding: 4px 10px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.project-card__tech-tag:hover {
+  border-color: #ff3c3c;
+  box-shadow: 0 0 8px rgba(255, 60, 60, 0.2);
+  color: #fff;
+}
+
+/* Status */
+.project-card__status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.project-card__status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.project-card__status-dot--completed {
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.5);
+}
+
+.project-card__status-dot--in-progress {
+  background: #f59e0b;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.5);
+}
+
+.project-card__status-dot--planned {
+  background: #6b7280;
+  box-shadow: 0 0 6px rgba(107, 114, 128, 0.3);
+}
+
+.project-card__status-text {
+  font-family: 'Special Elite', cursive;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Action buttons */
+.project-card__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.project-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.project-card__btn--github {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #fff;
+}
+
+.project-card__btn--github:hover {
+  border-color: #fff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+}
+
+.project-card__btn--primary {
+  border: 1px solid #ff3c3c;
+  background: rgba(255, 60, 60, 0.08);
+  color: #ff3c3c;
+}
+
+.project-card__btn--primary:hover {
+  background: rgba(255, 60, 60, 0.18);
+  box-shadow: 0 0 15px rgba(255, 60, 60, 0.2);
+}
+
+.project-card__btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+
+/* ================================================================
+   ZONE 3: CLOSING — MIGUEL QUOTE
+   ================================================================ */
+.projects-closer {
+  position: relative;
+  width: 100%;
+  min-height: 50vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projects-closer__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.projects-closer__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.projects-closer__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to top,
+    rgba(5, 0, 15, 0.95) 0%,
+    rgba(5, 0, 15, 0.5) 50%,
+    rgba(5, 0, 15, 0.8) 100%
+  );
+}
+
+.projects-closer__content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 80px 48px;
+}
+
+.projects-closer__quote {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  color: #4a9eff;
+  margin: 0 0 24px 0;
+}
+
+.projects-closer__attribution {
+  font-family: 'Special Elite', cursive;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Watermark "2099" */
+.projects-closer__watermark {
+  position: absolute;
+  bottom: 20px;
+  right: 48px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 120px;
+  color: rgba(255, 60, 60, 0.06);
+  line-height: 1;
+  z-index: 3;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Spider logo in bottom left of closer */
+.projects-closer__spider {
+  position: absolute;
+  bottom: 24px;
+  left: 48px;
+  z-index: 3;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.projects-closer__spider svg,
+.projects-closer__spider img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+
+/* ================================================================
+   BACK BUTTON (2099)
+   ================================================================ */
+.projects-back-btn {
+  position: fixed;
+  top: 32px;
+  left: 32px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: rgba(5, 0, 15, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 60, 60, 0.15);
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.35em;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.projects-back-btn:hover {
+  border-color: rgba(255, 60, 60, 0.4);
+  color: #ff3c3c;
+  background: rgba(5, 0, 15, 0.95);
+}
+
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 1024px) {
+  .projects-hero__content {
+    padding: 0 32px 60px;
+  }
+
+  .projects-hero__figure {
+    height: 65%;
+    opacity: 0.6;
+  }
+
+  .projects-section {
+    padding: 60px 32px 100px;
+  }
+
+  .projects-timeline {
+    padding-left: 70px;
+  }
+
+  .project-node__marker {
+    left: -70px;
+    width: 70px;
+  }
+
+  .project-node__number {
+    font-size: 48px;
+  }
+
+  .project-node__dot {
+    left: -46px;
+  }
+
+  .projects-timeline::before {
+    left: 20px;
+  }
+
+  .projects-navbar__inner {
+    padding: 14px 32px;
+  }
+
+  .projects-navbar__links {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-hero {
+    height: 75vh;
+  }
+
+  .projects-hero__content {
+    padding: 0 20px 40px;
+  }
+
+  .projects-hero__title {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+
+  .projects-hero__figure {
+    height: 50%;
+    opacity: 0.4;
+  }
+
+  .projects-section {
+    padding: 40px 20px 80px;
+  }
+
+  .projects-timeline {
+    padding-left: 0;
+  }
+
+  .projects-timeline::before {
+    display: none;
+  }
+
+  .project-node__marker {
+    position: relative;
+    left: auto;
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .project-node__dot {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+  }
+
+  .project-node__number {
+    font-size: 40px;
+  }
+
+  .project-card__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card__image-col {
+    height: 220px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 60, 60, 0.08);
+  }
+
+  .project-card__info {
+    padding: 24px 20px;
+  }
+
+  .project-card__title {
+    font-size: 28px;
+  }
+
+  .projects-closer__watermark {
+    font-size: 80px;
+    right: 20px;
+  }
+
+  .projects-closer__spider {
+    left: 20px;
+  }
+
+  .projects-closer__content {
+    padding: 60px 20px;
+  }
+
+  .projects-navbar__links {
+    gap: 16px;
+  }
+
+  .projects-navbar__link {
+    font-size: 12px;
+  }
+
+  .projects-navbar__inner {
+    padding: 12px 20px;
+  }
+
+  .projects-navbar__dots {
+    display: none;
+  }
+
+  .projects-back-btn {
+    top: 24px;
+    left: 16px;
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+
+  .project-node {
+    margin-bottom: 50px;
+  }
+}

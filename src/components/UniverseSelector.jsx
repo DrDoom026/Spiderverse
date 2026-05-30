@@ -104,6 +104,10 @@ const UniverseSelector = forwardRef(({ onNavigate }, ref) => {
       if (u.key === 'gallery' && onNavigate) {
         onNavigate('gallery');
       }
+      /* Navigate to the Projects page after the portal animation */
+      if (u.key === 'projects' && onNavigate) {
+        onNavigate('projects');
+      }
       overlay.style.opacity = '0';
       overlay.style.transition = 'opacity 0.4s ease';
       setTimeout(() => overlay.remove(), 400);
