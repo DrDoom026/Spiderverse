@@ -168,9 +168,9 @@ const HeroSection = ({ onEnter }) => {
               maxWidth: 560,
             }}
           >
-            "Curiosity{' '}
-            <span style={{ color: '#D7263D', fontStyle: 'italic' }}>over</span>{' '}
-            comfort."
+            "With great power,{' '}
+            <span style={{ color: '#D7263D', fontStyle: 'italic' }}>comes</span>{' '}
+            great responsibility."
           </motion.blockquote>
 
           {/* Description */}
@@ -186,8 +186,7 @@ const HeroSection = ({ onEnter }) => {
               marginBottom: 36,
             }}
           >
-            Every universe has a story. This one belongs to a builder who crashes
-            through code, design, and frame after frame — chasing ideas the way
+            Every universe has a story. This one belongs to me — chasing ideas the way
             Spider-Man chases skylines. Step through the portal and pick your
             reality.
           </motion.p>
