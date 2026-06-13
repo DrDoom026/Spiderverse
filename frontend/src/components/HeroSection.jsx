@@ -1,338 +1,181 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
-import Particles from './Particles';
+import landingBg from '../assets/landing-falling.jpg';
+import neonSpiderLogo from '../assets/spider-logo-neon.jpg';
+import '../hero.css';
 
-// Place your spider logo at public/assets/spider-logo.png
-// Falling back to the hosted version
-const SPIDER_LOGO_URL = '/assets/spider-logo.png';
-
-const stagger = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
-  },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.85, ease: [0.2, 0.8, 0.2, 1] },
-  },
-};
+/**
+ * HeroSection — Cinematic Still (Earth-616)
+ *
+ * Layout: Option 1A — Full-bleed Spider-Man falling through neon NYC, text
+ * stack bottom-left, small neon spider logo top-right as an issue mark.
+ *
+ * Effects:
+ *  • Slow Ken Burns zoom on background
+ *  • Subtle mouse parallax (translates inner bg layer)
+ *  • Soft animated film grain (SVG noise)
+ *  • Occasional chromatic-aberration pulse (every ~8.5s, ~200ms)
+ *
+ * Tone: cinematic, mature, Spider-Verse movie-inspired.
+ * Content (UNCHANGED): NISHCHAL, "With great power, comes great
+ * responsibility.", Designer · Builder · Web-Slinger, every-universe-has...
+ */
 
 const HeroSection = ({ onEnter }) => {
+  const bgInnerRef = useRef(null);
+
+  // Mouse parallax — subtle, GPU-friendly
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+
+    let frame = null;
+    const handleMove = (e) => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        const node = bgInnerRef.current;
+        if (!node) return;
+        const x = (e.clientX / window.innerWidth - 0.5) * -18; // ±9px
+        const y = (e.clientY / window.innerHeight - 0.5) * -14; // ±7px
+        node.style.setProperty('--px', `${x}px`);
+        node.style.setProperty('--py', `${y}px`);
+      });
+    };
+
+    window.addEventListener('mousemove', handleMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMove);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
-    <section
-      data-testid="hero-section"
-      style={{
-        position: 'relative',
-        minHeight: '100vh',
-        overflow: 'hidden',
-        paddingTop: 80,
-      }}
-    >
-      {/* Ambient spotlights */}
-      <div
-        className="spotlight-red"
-        style={{ top: '-15%', left: '-15%', zIndex: 0 }}
-      />
-      <div
-        className="spotlight-blue"
-        style={{ bottom: '-25%', right: '-10%', zIndex: 0 }}
-      />
-
-      {/* Particles */}
-      <Particles count={42} />
-
-      {/* Side text */}
-      <div
-        aria-hidden
-        className="hide-mobile"
-        style={{
-          position: 'absolute',
-          left: 18,
-          top: '50%',
-          transform: 'translateY(-50%) rotate(-90deg)',
-          transformOrigin: 'left top',
-          fontFamily: 'Outfit, sans-serif',
-          fontSize: 10,
-          letterSpacing: '0.6em',
-          color: 'rgba(255,255,255,0.35)',
-          zIndex: 5,
-          whiteSpace: 'nowrap',
-        }}
-      >
-        ISSUE 01 — VOL. INFINITE — A MULTIVERSE PORTFOLIO
+    <section className="cine-hero" data-testid="hero-section">
+      {/* ───────── Background image (Ken Burns) ───────── */}
+      <div className="cine-hero__bg" aria-hidden>
+        <div
+          ref={bgInnerRef}
+          className="cine-hero__bg-inner"
+          style={{ backgroundImage: `url(${landingBg})` }}
+        />
       </div>
 
-      {/* Main hero grid */}
-      <div
-        className="lg-grid-2"
-        style={{
-          position: 'relative',
-          zIndex: 4,
-          maxWidth: 1600,
-          margin: '0 auto',
-          padding: '40px 24px 80px',
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: 40,
-          alignItems: 'center',
-          minHeight: 'calc(100vh - 80px)',
-        }}
-      >
-        {/* Left: Text content */}
-        <motion.div variants={stagger} initial="hidden" animate="show" style={{ position: 'relative' }}>
-          {/* Badge */}
-          <motion.div variants={fadeUp} style={{ marginBottom: 18 }}>
-            <span
-              className="font-body glitch-text"
-              data-testid="hero-badge"
-              data-text="// EARTH-616"
-              style={{
-                display: 'inline-block',
-                padding: '8px 16px',
-                border: '1px solid rgba(215,38,61,0.5)',
-                color: '#D7263D',
-                fontSize: 14,
-                fontWeight: 'bold',
-                letterSpacing: '0.35em',
-                textTransform: 'uppercase',
-              }}
-            >
-              // EARTH-616
-            </span>
-          </motion.div>
+      {/* Atmosphere */}
+      <div className="cine-hero__vignette" aria-hidden />
+      <div className="cine-hero__bottom-gradient" aria-hidden />
+      <div className="cine-hero__left-gradient" aria-hidden />
+      <div className="cine-hero__halftone" aria-hidden />
+      <div className="cine-hero__grain" aria-hidden />
+      <div className="cine-hero__chroma" aria-hidden />
 
-          {/* Name */}
-          <motion.h1
-            variants={fadeUp}
-            data-testid="hero-name"
-            className="font-comic chromatic-text"
-            style={{
-              fontSize: 'clamp(2.8rem, 6.6vw, 6.6rem)',
-              lineHeight: 0.9,
-              letterSpacing: '-0.02em',
-              margin: 0,
-              whiteSpace: 'nowrap',
-            }}
-          >
-            NISHCHAL
-          </motion.h1>
-
-          {/* Subtitle line */}
-          <motion.div
-            variants={fadeUp}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 16,
-              marginTop: 18,
-              marginBottom: 24,
-            }}
-          >
-            <span
-              style={{
-                width: 56,
-                height: 2,
-                background: '#D7263D',
-                display: 'inline-block',
-              }}
-            />
-            <span
-              className="font-body"
-              style={{
-                fontSize: 14,
-                letterSpacing: '0.3em',
-                color: '#9CA3AF',
-                textTransform: 'uppercase',
-              }}
-            >
-              Designer · Builder · Web-Slinger
-            </span>
-          </motion.div>
-
-          {/* Quote */}
-          <motion.blockquote
-            variants={fadeUp}
-            data-testid="hero-quote"
-            className="font-display"
-            style={{
-              fontSize: 'clamp(1.8rem, 3.4vw, 2.8rem)',
-              lineHeight: 1.05,
-              letterSpacing: '0.02em',
-              color: '#fff',
-              margin: '12px 0 18px',
-              maxWidth: 560,
-            }}
-          >
-            "With great power,{' '}
-            <span style={{ color: '#D7263D', fontStyle: 'italic' }}>comes</span>{' '}
-            great responsibility."
-          </motion.blockquote>
-
-          {/* Description */}
-          <motion.p
-            variants={fadeUp}
-            data-testid="hero-intro"
-            className="font-body"
-            style={{
-              fontSize: 16,
-              lineHeight: 1.7,
-              color: 'rgba(255,255,255,0.72)',
-              maxWidth: 520,
-              marginBottom: 36,
-            }}
-          >
-            Every universe has a story. This one belongs to me — chasing ideas the way
-            Spider-Man chases skylines. Step through the portal and pick your
-            reality.
-          </motion.p>
-
-          {/* CTA */}
-          <motion.div variants={fadeUp}>
-            <button
-              type="button"
-              onClick={onEnter}
-              className="enter-btn"
-              data-testid="enter-multiverse-button"
-            >
-              <span>Enter the Multiverse</span>
-              <ArrowDown size={20} style={{ transform: 'skew(10deg)' }} strokeWidth={2.5} />
-            </button>
-          </motion.div>
-        </motion.div>
-
-        {/* Right: Spider logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, rotate: -4 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1.4, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
-          style={{
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: 400,
-          }}
-          data-testid="hero-spider-logo"
-        >
-          {/* Orbiting ring 1 */}
-          <motion.div
-            aria-hidden
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, rotate: 360 }}
-            transition={{
-              opacity: { duration: 1.5, delay: 0.6 },
-              rotate: { duration: 90, repeat: Infinity, ease: 'linear' },
-            }}
-            style={{
-              position: 'absolute',
-              width: 'min(85%, 620px)',
-              aspectRatio: '1 / 1',
-              borderRadius: '50%',
-              border: '1px dashed rgba(215,38,61,0.35)',
-            }}
-          />
-
-          {/* Orbiting ring 2 */}
-          <motion.div
-            aria-hidden
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, rotate: -360 }}
-            transition={{
-              opacity: { duration: 1.5, delay: 0.7 },
-              rotate: { duration: 120, repeat: Infinity, ease: 'linear' },
-            }}
-            style={{
-              position: 'absolute',
-              width: 'min(70%, 510px)',
-              aspectRatio: '1 / 1',
-              borderRadius: '50%',
-              border: '1px solid rgba(30,58,138,0.35)',
-            }}
-          />
-
-          {/* Spider logo */}
-          <div
-            className="floaty spider-glow"
-            style={{
-              position: 'relative',
-              zIndex: 2,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: '30px',
-              borderRadius: '50%',
-              background:
-                'radial-gradient(circle at 50% 50%, rgba(215,38,61,0.6) 0%, rgba(120,30,180,0.45) 28%, rgba(30,58,138,0.3) 50%, rgba(0,0,0,0) 70%)',
-            }}
-          >
-            <img
-              src={SPIDER_LOGO_URL}
-              alt="Spider-Verse emblem"
-              style={{
-                width: 'min(82%, 580px)',
-                maxWidth: '100%',
-                objectFit: 'contain',
-                userSelect: 'none',
-                pointerEvents: 'none',
-                mixBlendMode: 'screen',
-                filter: 'contrast(1.4) brightness(1.08) saturate(1.3)',
-                WebkitMaskImage:
-                  'radial-gradient(ellipse 60% 65% at 50% 50%, #000 35%, rgba(0,0,0,0.85) 55%, rgba(0,0,0,0) 78%)',
-                maskImage:
-                  'radial-gradient(ellipse 60% 65% at 50% 50%, #000 35%, rgba(0,0,0,0.85) 55%, rgba(0,0,0,0) 78%)',
-              }}
-              draggable={false}
-            />
-          </div>
-
-          {/* Corner label */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 8,
-              right: 8,
-              fontFamily: 'Bebas Neue, sans-serif',
-              letterSpacing: '0.3em',
-              fontSize: 12,
-              color: 'rgba(255,255,255,0.5)',
-              border: '1px solid rgba(255,255,255,0.15)',
-              padding: '6px 10px',
-            }}
-          >
-            ⌖ EARTH-616 · LIVE
-          </div>
-        </motion.div>
+      {/* ───────── Top-right issue mark (neon spider logo) ───────── */}
+      <div className="cine-hero__issuemark" data-testid="hero-spider-logo">
+        <div className="cine-hero__issuemark-meta">
+          <span>ISSUE 01</span>
+          <strong>EARTH-616</strong>
+        </div>
+        <img
+          src={neonSpiderLogo}
+          alt="Spider-Verse issue mark"
+          className="cine-hero__issuemark-logo"
+          draggable={false}
+        />
       </div>
 
-      {/* Scroll indicator */}
+      {/* ───────── Bottom-left content stack ───────── */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 6, 0] }}
-        transition={{
-          opacity: { duration: 1, delay: 1.6 },
-          y: { duration: 2, repeat: Infinity },
-        }}
-        style={{
-          position: 'absolute',
-          bottom: 24,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          fontFamily: 'Outfit, sans-serif',
-          fontSize: 10,
-          letterSpacing: '0.4em',
-          color: 'rgba(255,255,255,0.55)',
-          zIndex: 5,
-          textAlign: 'center',
+        className="cine-hero__content"
+        initial="hidden"
+        animate="show"
+        variants={{
+          hidden: {},
+          show: { transition: { staggerChildren: 0.16, delayChildren: 0.35 } },
         }}
       >
-        SCROLL <br />
-        <span style={{ fontSize: 14 }}>▾</span>
+        <motion.div
+          className="cine-hero__eyebrow"
+          data-testid="hero-badge"
+          variants={{
+            hidden: { opacity: 0, y: 14 },
+            show: { opacity: 1, y: 0, transition: { duration: 0.85, ease: [0.2, 0.8, 0.2, 1] } },
+          }}
+        >
+          // EARTH-616
+        </motion.div>
+
+        <motion.h1
+          className="cine-hero__name"
+          data-testid="hero-name"
+          variants={{
+            hidden: { opacity: 0, y: 32 },
+            show: { opacity: 1, y: 0, transition: { duration: 1.05, ease: [0.2, 0.8, 0.2, 1] } },
+          }}
+        >
+          NISHCHAL<span className="cine-hero__name-accent">.</span>
+        </motion.h1>
+
+        <motion.div
+          className="cine-hero__roleline"
+          variants={{
+            hidden: { opacity: 0, y: 14 },
+            show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.2, 0.8, 0.2, 1] } },
+          }}
+        >
+          <span className="cine-hero__roleline-dot" aria-hidden />
+          Designer · Builder · Web-Slinger
+        </motion.div>
+
+        <motion.blockquote
+          className="cine-hero__quote"
+          data-testid="hero-quote"
+          variants={{
+            hidden: { opacity: 0, y: 18 },
+            show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.2, 0.8, 0.2, 1] } },
+          }}
+        >
+          “With great power, <span className="cine-hero__quote-accent">comes</span> great responsibility.”
+        </motion.blockquote>
+
+        <motion.p
+          className="cine-hero__intro"
+          data-testid="hero-intro"
+          variants={{
+            hidden: { opacity: 0, y: 14 },
+            show: { opacity: 1, y: 0, transition: { duration: 0.85, ease: [0.2, 0.8, 0.2, 1] } },
+          }}
+        >
+          Every universe has a story. This one belongs to me — chasing ideas the
+          way Spider-Man chases skylines. Step through the portal and pick your
+          reality.
+        </motion.p>
+
+        <motion.button
+          type="button"
+          onClick={onEnter}
+          className="cine-hero__cta"
+          data-testid="enter-multiverse-button"
+          variants={{
+            hidden: { opacity: 0, y: 14 },
+            show: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.1, ease: [0.2, 0.8, 0.2, 1] } },
+          }}
+        >
+          <span>Enter the Multiverse</span>
+          <span className="cine-hero__cta-arrow" aria-hidden>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 2v10M2.5 7.5L7 12l4.5-4.5" />
+            </svg>
+          </span>
+        </motion.button>
       </motion.div>
+
+      {/* ───────── Bottom-right frame meta ───────── */}
+      <div className="cine-hero__frame-meta hide-mobile" aria-hidden>
+        <strong>SCENE 01 / IV</strong>
+        <span className="cine-hero__frame-meta-rule" />
+        <span>A MULTIVERSE PORTFOLIO</span>
+      </div>
     </section>
   );
 };
