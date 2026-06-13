@@ -22,9 +22,10 @@ import '../hero.css';
  */
 
 const HeroSection = ({ onEnter }) => {
-  const bgInnerRef = useRef(null);
+  const sectionRef = useRef(null);
 
-  // Mouse parallax — subtle, GPU-friendly
+  // Mouse parallax — applied at section level so bg AND figure overlay
+  // stay in perfect sync (depth feels cohesive).
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -35,12 +36,15 @@ const HeroSection = ({ onEnter }) => {
       if (frame) return;
       frame = requestAnimationFrame(() => {
         frame = null;
-        const node = bgInnerRef.current;
+        const node = sectionRef.current;
         if (!node) return;
-        const x = (e.clientX / window.innerWidth - 0.5) * -18; // ±9px
+        const x = (e.clientX / window.innerWidth - 0.5) * -18;  // ±9px
         const y = (e.clientY / window.innerHeight - 0.5) * -14; // ±7px
+        // Figure gets slightly more travel for parallax depth
         node.style.setProperty('--px', `${x}px`);
         node.style.setProperty('--py', `${y}px`);
+        node.style.setProperty('--fx', `${x * 1.6}px`);
+        node.style.setProperty('--fy', `${y * 1.6}px`);
       });
     };
 
@@ -52,11 +56,10 @@ const HeroSection = ({ onEnter }) => {
   }, []);
 
   return (
-    <section className="cine-hero" data-testid="hero-section">
+    <section className="cine-hero" data-testid="hero-section" ref={sectionRef}>
       {/* ───────── Background image (Ken Burns) ───────── */}
       <div className="cine-hero__bg" aria-hidden>
         <div
-          ref={bgInnerRef}
           className="cine-hero__bg-inner"
           style={{ backgroundImage: `url(${landingBg})` }}
         />
@@ -69,6 +72,34 @@ const HeroSection = ({ onEnter }) => {
       <div className="cine-hero__halftone" aria-hidden />
       <div className="cine-hero__grain" aria-hidden />
       <div className="cine-hero__chroma" aria-hidden />
+
+      {/* ───────── Centered HERO QUOTE (sits BEHIND the figure) ───────── */}
+      <div className="cine-hero__quote-center-wrap" aria-hidden={false}>
+        <motion.blockquote
+          className="cine-hero__quote-center"
+          data-testid="hero-quote"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.4, delay: 0.55, ease: [0.2, 0.8, 0.2, 1] }}
+        >
+          <span className="cine-hero__quote-line cine-hero__quote-line--top">
+            “With great power,
+          </span>
+          <span className="cine-hero__quote-line cine-hero__quote-line--bottom">
+            <span className="cine-hero__quote-accent">comes</span> great responsibility.”
+          </span>
+        </motion.blockquote>
+      </div>
+
+      {/* ───────── Spider-Man FIGURE overlay (in FRONT of the quote) ─────────
+          Same image, masked to reveal only the falling figure region,
+          so it visually pops over the quote text and feels 3D. */}
+      <div className="cine-hero__figure" aria-hidden>
+        <div
+          className="cine-hero__figure-inner"
+          style={{ backgroundImage: `url(${landingBg})` }}
+        />
+      </div>
 
       {/* ───────── Top-right issue mark (neon spider logo) ───────── */}
       <div className="cine-hero__issuemark" data-testid="hero-spider-logo">
@@ -84,7 +115,7 @@ const HeroSection = ({ onEnter }) => {
         />
       </div>
 
-      {/* ───────── Bottom-left content stack ───────── */}
+      {/* ───────── Bottom-left content stack (no inline quote anymore) ───────── */}
       <motion.div
         className="cine-hero__content"
         initial="hidden"
@@ -126,17 +157,6 @@ const HeroSection = ({ onEnter }) => {
           <span className="cine-hero__roleline-dot" aria-hidden />
           Designer · Builder · Web-Slinger
         </motion.div>
-
-        <motion.blockquote
-          className="cine-hero__quote"
-          data-testid="hero-quote"
-          variants={{
-            hidden: { opacity: 0, y: 18 },
-            show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.2, 0.8, 0.2, 1] } },
-          }}
-        >
-          “With great power, <span className="cine-hero__quote-accent">comes</span> great responsibility.”
-        </motion.blockquote>
 
         <motion.p
           className="cine-hero__intro"
