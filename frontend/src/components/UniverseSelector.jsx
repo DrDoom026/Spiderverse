@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
+import { runUniverseTransition } from '../lib/universeTransitions';
 
 const UNIVERSES = [
   {
@@ -63,55 +64,12 @@ const cardVariants = {
 
 const UniverseSelector = forwardRef(({ onNavigate }, ref) => {
   const handleCardClick = (u) => {
-    // Portal transition effect
-    const overlay = document.createElement('div');
-    overlay.style.cssText = `
-      position: fixed; inset: 0; z-index: 100;
-      background: radial-gradient(circle at 50% 50%, ${u.portalColor} 0%, #000 75%);
-      display: flex; align-items: center; justify-content: center;
-      pointer-events: none;
-      clip-path: circle(0% at 50% 50%);
-      transition: clip-path 0.95s cubic-bezier(0.7, 0, 0.3, 1);
-    `;
-
-    const label = document.createElement('div');
-    label.className = 'font-comic chromatic-text-sm';
-    label.style.cssText = `
-      font-size: clamp(2rem, 6vw, 5rem);
-      letter-spacing: 0.05em;
-      text-align: center;
-      color: #fff;
-      opacity: 0;
-      transform: scale(0.6);
-      transition: all 0.4s ease 0.35s;
-    `;
-    label.textContent = `ENTERING ${u.title}`;
-    overlay.appendChild(label);
-    document.body.appendChild(overlay);
-
-    requestAnimationFrame(() => {
-      overlay.style.clipPath = 'circle(140% at 50% 50%)';
-      label.style.opacity = '1';
-      label.style.transform = 'scale(1)';
+    // Per-universe dimensional travel — each portal animates uniquely
+    runUniverseTransition(u.key, () => {
+      if (onNavigate && ['contact', 'gallery', 'projects', 'about'].includes(u.key)) {
+        onNavigate(u.key);
+      }
     });
-
-    setTimeout(() => {
-      /* Navigate to the Contact page after the portal animation */
-      if (u.key === 'contact' && onNavigate) {
-        onNavigate('contact');
-      }
-      /* Navigate to the Gallery page after the portal animation */
-      if (u.key === 'gallery' && onNavigate) {
-        onNavigate('gallery');
-      }
-      /* Navigate to the Projects page after the portal animation */
-      if (u.key === 'projects' && onNavigate) {
-        onNavigate('projects');
-      }
-      overlay.style.opacity = '0';
-      overlay.style.transition = 'opacity 0.4s ease';
-      setTimeout(() => overlay.remove(), 400);
-    }, 1800);
   };
 
   return (
