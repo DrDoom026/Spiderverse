@@ -73,7 +73,7 @@ const HeroSection = ({ onEnter }) => {
       <div className="cine-hero__grain" aria-hidden />
       <div className="cine-hero__chroma" aria-hidden />
 
-      {/* ───────── Centered HERO QUOTE (sits BEHIND the figure) ───────── */}
+      {/* ───────── Centered HERO QUOTE (sits in FRONT of the figure) ───────── */}
       <div className="cine-hero__quote-center-wrap" aria-hidden={false}>
         <motion.blockquote
           className="cine-hero__quote-center"
@@ -89,16 +89,6 @@ const HeroSection = ({ onEnter }) => {
             <span className="cine-hero__quote-accent">comes</span> great responsibility.”
           </span>
         </motion.blockquote>
-      </div>
-
-      {/* ───────── Spider-Man FIGURE overlay (in FRONT of the quote) ─────────
-          Same image, masked to reveal only the falling figure region,
-          so it visually pops over the quote text and feels 3D. */}
-      <div className="cine-hero__figure" aria-hidden>
-        <div
-          className="cine-hero__figure-inner"
-          style={{ backgroundImage: `url(${landingBg})` }}
-        />
       </div>
 
       {/* ───────── Top-right issue mark (neon spider logo) ───────── */}
