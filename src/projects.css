@@ -960,7 +960,8 @@
   }
 
   .projects-hero__title {
-    font-size: clamp(3rem, 12vw, 5rem);
+    font-size: clamp(2.8rem, 11vw, 5rem);
+    flex-wrap: wrap;
   }
 
   .projects-hero__figure {

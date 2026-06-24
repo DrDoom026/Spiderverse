@@ -7,28 +7,7 @@ import panel3Img from '../assets/panel3-times.jpg';
 import panel4Img from '../assets/panel4-chromatic.jpg';
 import '../about.css';
 
-// Inline SVG icons (lucide-react v1 doesn't ship Github/Linkedin/Mail/Twitter)
-const IconGithub = () => (
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
-    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.05.78 2.12v3.14c0 .31.21.68.8.56C20.21 21.38 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5Z"/>
-  </svg>
-);
-const IconLinkedin = () => (
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
-    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.23 0H1.77C.79 0 0 .78 0 1.74v20.52C0 23.22.79 24 1.77 24h20.46C23.21 24 24 23.22 24 22.26V1.74C24 .78 23.21 0 22.23 0Z"/>
-  </svg>
-);
-const IconMail = () => (
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-    <rect x="3" y="5" width="18" height="14" rx="2"/>
-    <path d="m3 7 9 6 9-6"/>
-  </svg>
-);
-const IconTwitter = () => (
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
-    <path d="M18.244 2H21.5l-7.5 8.57L23 22h-6.99l-5.47-7.16L4.2 22H.94l8.04-9.19L0 2h7.16l4.94 6.53L18.24 2Zm-2.45 18h1.82L7.27 4h-1.9l10.42 16Z"/>
-  </svg>
-);
+
 
 /**
  * About — Peter Parker Universe (Earth-616 origin story).
@@ -91,7 +70,7 @@ const About = ({ onBack }) => {
             <img src={panel1Img} alt="Spider-Man on rooftop" className="about-media__img" />
             <div className="about-media__halftone" />
             <div className="about-media__grain" />
-            <span className="about-media__caption">Panel 01 / Rooftop</span>
+            <span className="about-media__caption">Issue 1</span>
           </div>
         </motion.div>
 
@@ -157,7 +136,7 @@ const About = ({ onBack }) => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.div variants={reveal} className="about-text__eyebrow">
-            // PANEL 02 · ORIGIN
+            // · ORIGIN
           </motion.div>
 
           <motion.h2 variants={reveal} className="about-text__title">
@@ -207,7 +186,7 @@ const About = ({ onBack }) => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.div variants={reveal} className="about-text__eyebrow">
-            // PANEL 03 · ANOMALY DETECTED
+            ANOMALY DETECTED
           </motion.div>
 
           <motion.div
@@ -271,7 +250,7 @@ const About = ({ onBack }) => {
             <img src={panel4Img} alt="Spider-Verse iconic" className="about-media__img" />
             <div className="about-media__halftone" />
             <div className="about-media__grain" />
-            <span className="about-media__caption">Final Frame</span>
+            <span className="about-media__caption">Final Issue</span>
           </div>
         </motion.div>
 
@@ -283,7 +262,7 @@ const About = ({ onBack }) => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.div variants={reveal} className="about-text__eyebrow">
-            // PANEL 04 · THE JOURNEY
+            // · THE JOURNEY
           </motion.div>
 
           <motion.h2 variants={reveal} className="about-text__title">
@@ -302,24 +281,6 @@ const About = ({ onBack }) => {
             line if you want to talk shop, swap dotfiles, or discuss cinema.
           </motion.p>
 
-          <motion.div
-            variants={reveal}
-            className="about-contact"
-            data-testid="about-contact-links"
-          >
-            <a href="https://github.com/DrDoom026" target="_blank" rel="noreferrer" data-testid="contact-github">
-              <IconGithub /> GitHub
-            </a>
-            <a href="#" data-testid="contact-linkedin">
-              <IconLinkedin /> LinkedIn
-            </a>
-            <a href="mailto:hello@nishchal.dev" data-testid="contact-email">
-              <IconMail /> Email
-            </a>
-            <a href="#" data-testid="contact-twitter">
-              <IconTwitter /> X / Twitter
-            </a>
-          </motion.div>
 
           <motion.p
             variants={{

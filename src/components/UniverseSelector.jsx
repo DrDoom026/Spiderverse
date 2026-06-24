@@ -2,6 +2,11 @@ import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 import { runUniverseTransition } from '../lib/universeTransitions';
 
+import aboutBg from '../assets/about-sleeping.jpg';
+import projectsBg from '../assets/projects-logo.jpg';
+import galleryBg from '../assets/gallery-noir.jpg';
+import contactBg from '../assets/contact-lego.jpg';
+
 const UNIVERSES = [
   {
     key: 'about',
@@ -10,7 +15,7 @@ const UNIVERSES = [
     subtitle: 'Peter Parker Universe',
     description:
       'The friendly neighborhood story — origins, obsessions, and the quiet years.',
-    bg: 'https://static.prod-images.emergentagent.com/jobs/43efdf97-9cd7-4162-8978-cbe8af9896f8/images/d49cbd5055d616b7377cde8709332774aded011be2a3824833ae8c8a0ba9a67e.png',
+    bg: aboutBg,
     accent: '#D7263D',
     portalColor: '#D7263D',
     glow: 'card-glow-red',
@@ -22,7 +27,7 @@ const UNIVERSES = [
     subtitle: 'Spider-Man 2099 Universe',
     description:
       "Tomorrow's experiments — interfaces, products, and machines that swing forward.",
-    bg: 'https://static.prod-images.emergentagent.com/jobs/43efdf97-9cd7-4162-8978-cbe8af9896f8/images/0a7fa3b223a6ee84868d54887ced9ad935a841e568b13c97526c44dd080bd2ea.png',
+    bg: projectsBg,
     accent: '#00F0FF',
     portalColor: '#00F0FF',
     glow: 'card-glow-blue',
@@ -34,7 +39,7 @@ const UNIVERSES = [
     subtitle: 'Spider Noir Universe',
     description:
       'Frames in black and white — photography, sketches, and quieter visual notes.',
-    bg: 'https://static.prod-images.emergentagent.com/jobs/43efdf97-9cd7-4162-8978-cbe8af9896f8/images/bbef31eb562d49a24e92e6327de40a38ed7b541005fce176d78e19329cffc864.png',
+    bg: galleryBg,
     accent: '#E5E7EB',
     portalColor: '#9CA3AF',
     glow: 'card-glow-noir',
@@ -46,7 +51,7 @@ const UNIVERSES = [
     subtitle: 'LEGO Spider-Man Universe',
     description:
       'Snap the pieces together — collaborate, conspire, or just say hello.',
-    bg: 'https://static.prod-images.emergentagent.com/jobs/43efdf97-9cd7-4162-8978-cbe8af9896f8/images/d31b51d761626e3124ebc27418df7c4dfbcf1e93c8366bc8fdb549f0887a53f4.png',
+    bg: contactBg,
     accent: '#FFC700',
     portalColor: '#FFC700',
     glow: 'card-glow-lego',

@@ -7,8 +7,8 @@
 .contact-hero {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
   background: #f5f5f5;
   color: #1a1a1a;
 }
@@ -74,18 +74,16 @@
 /* ========== TEXT & BUTTONS CONTENT ========== */
 
 .contact-hero__overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 10;
-  padding: 0 48px 100px;
+  padding: 30vh 48px 100px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  height: 100%;
+  min-height: 100vh;
   pointer-events: none;
+  box-sizing: border-box;
 }
 
 /* Glitchy "Lego Earth" Badge in blocky Bungee font */
@@ -346,12 +344,22 @@
 
 @media (max-width: 768px) {
   .contact-hero__overlay {
-    padding: 0 20px 80px;
+    padding: 25vh 20px 80px;
   }
   
   .contact-hero__title span {
-    font-size: clamp(3rem, 12vw, 5.5rem);
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    /* Reduce 3D shadow depth on small screens to prevent overflow */
+    text-shadow: 1px 1px 0 var(--sh1), 2px 2px 0 #1a1a1a, 3px 3px 5px rgba(0,0,0,0.12);
   }
+  
+  .char-c  { --sh1: #b00008; }
+  .char-o  { --sh1: #cca200; }
+  .char-n  { --sh1: #003d7a; }
+  .char-t  { --sh1: #006b32; }
+  .char-a  { --sh1: #bf5f00; }
+  .char-c2 { --sh1: #b00008; }
+  .char-t2 { --sh1: #cca200; }
   
   .contact-hero__quote {
     margin-bottom: 20px;
@@ -383,8 +391,20 @@
   }
 }
 
+@media (max-width: 420px) {
+  .contact-hero__title span {
+    font-size: clamp(1.8rem, 9vw, 3rem);
+    text-shadow: 1px 1px 0 var(--sh1), 2px 2px 0 #1a1a1a, 3px 3px 5px rgba(0,0,0,0.1);
+  }
+
+  .contact-hero__title {
+    gap: 2px;
+  }
+}
+
 @media (max-height: 600px) {
   .contact-hero__overlay {
+    padding-top: 15vh;
     padding-bottom: 50px;
   }
   .contact-hero__quote {
