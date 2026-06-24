@@ -46,9 +46,9 @@
 /* ───────── Centered hero quote (sits BEHIND the figure) ───────── */
 .cine-hero__quote-center-wrap {
   position: absolute;
-  top: 50%;
+  top: 28%;
   left: 50%;
-  transform: translate(-50%, -54%);
+  transform: translate(-50%, -50%);
   z-index: 8;
   width: min(86%, 1080px);
   pointer-events: none;
@@ -60,7 +60,7 @@
   font-weight: 700;
   font-style: italic;
   color: rgba(255, 255, 255, 0.95);
-  font-size: clamp(1.4rem, 3.6vw, 3.8rem);
+  font-size: clamp(1.2rem, 2.6vw, 2.8rem);
   line-height: 1.04;
   letter-spacing: -0.012em;
   margin: 0;
