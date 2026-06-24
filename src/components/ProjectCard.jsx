@@ -110,32 +110,7 @@ export default function ProjectCard({ project, index }) {
               </div>
             </div>
 
-            {/* Actions */}
-            <div className="project-card__actions">
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-card__btn project-card__btn--github"
-                >
-                  <GithubIcon />
-                  GITHUB
-                </a>
-              )}
 
-              {project.caseStudy && (
-                <a
-                  href={project.caseStudy}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-card__btn project-card__btn--primary"
-                >
-                  <ExternalLinkIcon />
-                  CASE STUDY
-                </a>
-              )}
-            </div>
           </div>
         </div>
       </div>
