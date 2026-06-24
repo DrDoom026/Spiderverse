@@ -26,6 +26,34 @@ export default function Contact({ onBack }) {
       </motion.button>
 
       <ContactSection />
+
+      {/* ═══════════════ POST-CREDIT SCENE ═══════════════ */}
+      <section className="post-credit" data-testid="post-credit-scene">
+        <div className="post-credit__grain" aria-hidden="true" />
+        <div className="post-credit__inner">
+          <div className="post-credit__status" data-testid="post-credit-status">
+            <span className="post-credit__status-dot" />
+            <span className="post-credit__status-text">Earth-616 · Status: Active</span>
+          </div>
+
+          <h2 className="post-credit__title">
+            Current <span className="post-credit__title-accent">Mission</span>
+          </h2>
+
+          <ul className="post-credit__mission" data-testid="post-credit-mission">
+            <li>Build.</li>
+            <li>Learn.</li>
+            <li>Create.</li>
+          </ul>
+
+          <p className="post-credit__signoff">See You Across The Multiverse.</p>
+
+          <div className="post-credit__meta">
+            <span>// END · ISSUE 01</span>
+            <span>· TO BE CONTINUED ·</span>
+          </div>
+        </div>
+      </section>
     </motion.main>
   );
 }

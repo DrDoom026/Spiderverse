@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import panel1Img from '../assets/panel1-rooftop.png';
-import panel2Img from '../assets/panel2-portrait.jpg';
+import panel2Img from '../assets/origin-spiderman-desk.jpg';
 import panel3Img from '../assets/panel3-times.jpg';
 import panel4Img from '../assets/panel4-chromatic.jpg';
 import '../about.css';
@@ -121,10 +121,20 @@ const About = ({ onBack }) => {
           <div className="about-media" style={{
             boxShadow: '10px 10px 0 #1E3A8A, 10px 10px 0 3px #0a0a0a, 0 30px 60px rgba(0, 0, 0, 0.55)',
           }}>
-            <img src={panel2Img} alt="Spider-Man portrait" className="about-media__img" />
+            <img src={panel2Img} alt="Spider-Man at desk, late-night coding" className="about-media__img" />
             <div className="about-media__halftone" />
             <div className="about-media__grain" />
             <span className="about-media__caption about-media__caption--alt">Origin · Issue 02</span>
+          </div>
+
+          <div className="origin-notif" data-testid="origin-anomaly-notif">
+            <div className="origin-notif__label">
+              <span>Anomaly Detected</span>
+            </div>
+            <div className="origin-notif__text">
+              Subject developed an unhealthy curiosity
+              about how things work.
+            </div>
           </div>
         </motion.div>
 
@@ -280,6 +290,27 @@ const About = ({ onBack }) => {
             built, captured, and discovered across my own little universe. Drop a
             line if you want to talk shop, swap dotfiles, or discuss cinema.
           </motion.p>
+
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, scale: 0.92, y: 18 },
+              show: {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                transition: { duration: 0.85, ease: [0.2, 1.3, 0.4, 1] },
+              },
+            }}
+            className="canon-event canon-event--compact"
+            data-testid="canon-event-linux"
+          >
+            <div className="canon-event__label">
+              <span>Canon Event Logged</span>
+            </div>
+            <div className="canon-event__text">
+              [ Installed Linux. Broke everything. Installed Linux again. ]
+            </div>
+          </motion.div>
 
 
           <motion.p

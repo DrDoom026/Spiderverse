@@ -135,6 +135,15 @@
   filter: brightness(1.1);
 }
 
+/* Word spacer in title (e.g., "SEND A SIGNAL") */
+.contact-hero__title-space {
+  display: inline-block;
+  width: clamp(0.6rem, 1.4vw, 1.2rem);
+  pointer-events: none;
+  animation: none !important;
+  text-shadow: none !important;
+}
+
 /* Primary brick colors and isometric 3D offsets */
 .char-c  { color: #E3000B; animation-delay: 0s;    text-shadow: 1px 1px 0 #b00008, 2px 2px 0 #b00008, 3px 3px 0 #b00008, 4px 4px 0 #b00008, 5px 5px 0 #1a1a1a, 6px 6px 0 #1a1a1a, 7px 7px 8px rgba(0,0,0,0.15); }
 .char-o  { color: #FFD400; animation-delay: 0.15s; text-shadow: 1px 1px 0 #cca200, 2px 2px 0 #cca200, 3px 3px 0 #cca200, 4px 4px 0 #cca200, 5px 5px 0 #1a1a1a, 6px 6px 0 #1a1a1a, 7px 7px 8px rgba(0,0,0,0.15); }
@@ -418,4 +427,134 @@
     width: auto;
     flex: 1 1 120px;
   }
+}
+
+/* ================================================================
+   POST-CREDIT SCENE · Final page of a Spider-Verse issue
+   ================================================================ */
+.post-credit {
+  position: relative;
+  width: 100%;
+  background: #06050b;
+  color: #fff;
+  padding: clamp(80px, 14vh, 160px) clamp(24px, 5vw, 96px);
+  overflow: hidden;
+  border-top: 3px solid #0a0a0a;
+}
+
+.post-credit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(215, 38, 61, 0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(255, 45, 175, 0.16) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.post-credit__grain {
+  position: absolute;
+  inset: -10%;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+.post-credit__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.post-credit__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 18px;
+  border: 1.5px solid rgba(0, 240, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(8, 6, 18, 0.7);
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #00F0FF;
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1), 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.post-credit__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00F0FF;
+  box-shadow: 0 0 10px #00F0FF;
+}
+
+.post-credit__title {
+  font-family: 'Playfair Display', 'Crimson Pro', serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(2rem, 4.2vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.012em;
+  margin: 0;
+  color: #fff;
+  text-shadow:
+    -1.5px 0 0 rgba(255, 45, 175, 0.45),
+    1.5px 0 0 rgba(0, 240, 255, 0.22),
+    0 4px 26px rgba(0, 0, 0, 0.5);
+}
+
+.post-credit__title-accent { color: #D7263D; }
+
+.post-credit__mission {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  letter-spacing: 0.1em;
+  color: #FFD60A;
+  text-shadow: 2px 2px 0 #0a0a0a, -1px 0 0 rgba(255, 45, 175, 0.4);
+}
+
+.post-credit__signoff {
+  margin: 12px 0 0;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.8vw, 2.4rem);
+  line-height: 1.1;
+  color: #fff;
+  text-shadow:
+    -2px 0 0 rgba(255, 45, 175, 0.55),
+    2px 0 0 rgba(0, 240, 255, 0.3),
+    0 4px 36px rgba(0, 0, 0, 0.6);
+}
+
+.post-credit__meta {
+  margin-top: 12px;
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 600px) {
+  .post-credit__meta { gap: 12px; font-size: 9.5px; letter-spacing: 0.3em; }
 }

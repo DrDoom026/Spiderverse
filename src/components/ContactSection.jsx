@@ -132,18 +132,26 @@ export default function ContactSection() {
           Get In Touch
         </motion.div>
 
-        <motion.h1 className="contact-hero__title" variants={childVariants}>
-          <span className="char-c">C</span>
-          <span className="char-o">O</span>
+        <motion.h1 className="contact-hero__title" variants={childVariants} data-testid="contact-heading">
+          <span className="char-c">S</span>
+          <span className="char-o">E</span>
           <span className="char-n">N</span>
-          <span className="char-t">T</span>
+          <span className="char-t">D</span>
+          <span className="contact-hero__title-space" aria-hidden="true">&nbsp;</span>
           <span className="char-a">A</span>
-          <span className="char-c2">C</span>
-          <span className="char-t2">T</span>
+          <span className="contact-hero__title-space" aria-hidden="true">&nbsp;</span>
+          <span className="char-c2">S</span>
+          <span className="char-t2">I</span>
+          <span className="char-n">G</span>
+          <span className="char-t">N</span>
+          <span className="char-a">A</span>
+          <span className="char-c">L</span>
         </motion.h1>
 
-        <motion.p className="contact-hero__quote" variants={childVariants}>
-          "Every hero needs a signal in the sky."
+        <motion.p className="contact-hero__quote" variants={childVariants} data-testid="contact-subtitle">
+          Every hero needs a signal in the sky.<br />
+          Every builder needs a collaborator.<br />
+          <em>Let&apos;s connect across the multiverse.</em>
         </motion.p>
 
         {/* --- Social links stacked column --- */}
