@@ -5,6 +5,7 @@ import Landing from './pages/Landing';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
 import Projects from './pages/Projects';
+import About from './pages/About';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('landing');
@@ -17,28 +18,19 @@ function App() {
   return (
     <AnimatePresence mode="wait">
       {currentPage === 'landing' && (
-        <Landing
-          key="landing"
-          onNavigate={navigateTo}
-        />
+        <Landing key="landing" onNavigate={navigateTo} />
+      )}
+      {currentPage === 'about' && (
+        <About key="about" onBack={() => navigateTo('landing')} />
       )}
       {currentPage === 'contact' && (
-        <Contact
-          key="contact"
-          onBack={() => navigateTo('landing')}
-        />
+        <Contact key="contact" onBack={() => navigateTo('landing')} />
       )}
       {currentPage === 'gallery' && (
-        <Gallery
-          key="gallery"
-          onBack={() => navigateTo('landing')}
-        />
+        <Gallery key="gallery" onBack={() => navigateTo('landing')} />
       )}
       {currentPage === 'projects' && (
-        <Projects
-          key="projects"
-          onBack={() => navigateTo('landing')}
-        />
+        <Projects key="projects" onBack={() => navigateTo('landing')} />
       )}
     </AnimatePresence>
   );
