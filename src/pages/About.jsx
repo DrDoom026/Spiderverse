@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import Navbar from '../components/Navbar';
-import panel1Img from '../assets/panel2.jpg.jpg';
+import panel1Img from '../assets/panel2.jpg.jpg'; c
 import panel2Img from '../assets/panel2-portrait.jpg';
 import panel3Img from '../assets/panel3-times.jpg';
 import panel4Img from '../assets/panel4-chromatic.jpg';
