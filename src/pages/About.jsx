@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import Navbar from '../components/Navbar';
-import panel1Img from '../assets/panel1-rooftop.png';
-import panel2Img from '../assets/origin-spiderman-desk.jpg';
+import panel1Img from '../assets/panel1-forest.jpg';
+import panel2Img from '../assets/panel2-portrait.jpg';
 import panel3Img from '../assets/panel3-times.jpg';
 import panel4Img from '../assets/panel4-chromatic.jpg';
 import '../about.css';
@@ -308,7 +308,7 @@ const About = ({ onBack }) => {
               <span>Canon Event Logged</span>
             </div>
             <div className="canon-event__text">
-              [ Installed Linux. Broke everything. Installed Linux again. ]
+              [ A critical failure in the root directory that somehow stabilized my entire timeline. ]
             </div>
           </motion.div>
 
