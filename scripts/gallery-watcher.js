@@ -43,9 +43,39 @@ function ensurePhotosDir() {
   }
 }
 
+/** Sanitize a filename: replace spaces/parens/special chars with underscores */
+function sanitizeFilename(filename) {
+  const ext = path.extname(filename);
+  const name = path.basename(filename, ext);
+  const clean = name
+    .replace(/[() ]+/g, '_')       // parens and spaces → underscore
+    .replace(/[^a-zA-Z0-9_.-]/g, '_') // any other special chars → underscore
+    .replace(/_+/g, '_')           // collapse multiple underscores
+    .replace(/^_|_$/g, '');        // trim leading/trailing underscores
+  return `${clean}${ext.toLowerCase()}`;
+}
+
+/** Rename any files with problematic characters */
+function sanitizeAllFilenames() {
+  if (!fs.existsSync(PHOTOS_DIR)) return;
+  const files = fs.readdirSync(PHOTOS_DIR);
+  for (const file of files) {
+    if (!IMAGE_EXTS.has(path.extname(file).toLowerCase())) continue;
+    const sanitized = sanitizeFilename(file);
+    if (sanitized !== file) {
+      const oldPath = path.join(PHOTOS_DIR, file);
+      const newPath = path.join(PHOTOS_DIR, sanitized);
+      fs.renameSync(oldPath, newPath);
+      console.log(`🔧  Renamed: ${file} → ${sanitized}`);
+    }
+  }
+}
+
 /** Get sorted list of image files in the photos folder */
 function getImageFiles() {
   if (!fs.existsSync(PHOTOS_DIR)) return [];
+
+  sanitizeAllFilenames();
 
   return fs
     .readdirSync(PHOTOS_DIR)
