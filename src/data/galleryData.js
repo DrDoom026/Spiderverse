@@ -5,13 +5,7 @@
  * ⚡ Do NOT edit manually — drop photos into src/assets/gallery/photos/
  */
 
-import photo20250512_181423_1_001 from '../assets/gallery/photos/20250512_181423(1).jpg';
 
 export const galleryData = [
-  {
-    id: '001',
-    src: photo20250512_181423_1_001,
-    title: '20250512 181423(1)',
-    meta: '',
-  }
+
 ];
