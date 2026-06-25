@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "gallery:watch": "node scripts/gallery-watcher.js",
+    "gallery:sync": "node scripts/gallery-watcher.js --once"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
