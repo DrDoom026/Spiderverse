@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { galleryData } from '../data/galleryData';
 import RainCanvas from './RainCanvas';
 
@@ -72,6 +73,41 @@ const getLayoutClass = (index) => {
    ========================================= */
 
 export default function GallerySection() {
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const isOpen = lightboxIndex !== null;
+
+  const openLightbox = (index) => setLightboxIndex(index);
+  const closeLightbox = () => setLightboxIndex(null);
+
+  const goNext = useCallback(() => {
+    if (galleryData.length === 0) return;
+    setLightboxIndex((prev) => (prev + 1) % galleryData.length);
+  }, []);
+
+  const goPrev = useCallback(() => {
+    if (galleryData.length === 0) return;
+    setLightboxIndex((prev) => (prev - 1 + galleryData.length) % galleryData.length);
+  }, []);
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!isOpen) return;
+    const handler = (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') goNext();
+      if (e.key === 'ArrowLeft') goPrev();
+    };
+    window.addEventListener('keydown', handler);
+    // Prevent body scroll while lightbox is open
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handler);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, goNext, goPrev]);
+
+  const currentPhoto = isOpen ? galleryData[lightboxIndex] : null;
+
   return (
     <section
       className="noir-gallery"
@@ -174,6 +210,7 @@ export default function GallerySection() {
               whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}
               transition={{ delay: index * 0.15 }}
+              onClick={() => openLightbox(index)}
             >
               <div className="noir-photo__wrapper">
                 {/* Card number */}
@@ -239,6 +276,91 @@ export default function GallerySection() {
           </span>
         </div>
       </footer>
+
+      {/* ============================================
+          LIGHTBOX — Fullscreen Photo Viewer
+          ============================================ */}
+      <AnimatePresence>
+        {isOpen && currentPhoto && (
+          <motion.div
+            className="noir-lightbox"
+            data-testid="gallery-lightbox"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={closeLightbox}
+          >
+            {/* Counter */}
+            <div className="noir-lightbox__counter">
+              {String(lightboxIndex + 1).padStart(2, '0')} / {String(galleryData.length).padStart(2, '0')}
+            </div>
+
+            {/* Close button */}
+            <button
+              type="button"
+              className="noir-lightbox__close"
+              onClick={closeLightbox}
+              aria-label="Close lightbox"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 6L6 18" />
+                <path d="M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Prev arrow */}
+            {galleryData.length > 1 && (
+              <button
+                type="button"
+                className="noir-lightbox__nav noir-lightbox__nav--prev"
+                onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                aria-label="Previous photo"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+            )}
+
+            {/* Image */}
+            <motion.img
+              key={currentPhoto.id}
+              src={currentPhoto.src}
+              alt={currentPhoto.title}
+              className="noir-lightbox__image"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
+              draggable={false}
+            />
+
+            {/* Next arrow */}
+            {galleryData.length > 1 && (
+              <button
+                type="button"
+                className="noir-lightbox__nav noir-lightbox__nav--next"
+                onClick={(e) => { e.stopPropagation(); goNext(); }}
+                aria-label="Next photo"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            )}
+
+            {/* Photo info */}
+            <div className="noir-lightbox__info">
+              <div className="noir-lightbox__title">{currentPhoto.title}</div>
+              {currentPhoto.meta && (
+                <div className="noir-lightbox__meta">{currentPhoto.meta}</div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
