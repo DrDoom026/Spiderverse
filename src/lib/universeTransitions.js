@@ -23,11 +23,12 @@ function el(tag, styles = {}, attrs = {}) {
 // Universe themes (color identity per portal)
 // ─────────────────────────────────────────────────────────────
 export const UNIVERSE_THEME = {
-  about: { primary: '#D7263D', secondary: '#1E3A8A', label: 'EARTH-616' },
+  about:   { primary: '#D7263D', secondary: '#1E3A8A', label: 'EARTH-616' },
   projects: { primary: '#00F0FF', secondary: '#FF2DAF', label: 'NUEVA YORK · 2099' },
-  gallery: { primary: '#E5E7EB', secondary: '#0a0a0a', label: 'EARTH-90214' },
-  contact: { primary: '#FFC700', secondary: '#D7263D', label: 'EARTH-13122 · LEGO' },
-  landing: { primary: '#D7263D', secondary: '#1E3A8A', label: 'EARTH-616' },
+  gallery:  { primary: '#E5E7EB', secondary: '#0a0a0a', label: 'EARTH-90214' },
+  contact:  { primary: '#FFC700', secondary: '#D7263D', label: 'EARTH-13122 · LEGO' },
+  landing:  { primary: '#D7263D', secondary: '#1E3A8A', label: 'EARTH-616' },
+  reviews:  { primary: '#1a1209', secondary: '#b91c1c', label: 'THE DAILY REVIEW' },
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -281,6 +282,80 @@ function transitionLego(onComplete) {
 }
 
 // ─────────────────────────────────────────────────────────────
+// Newspaper — Ink-bleed wipe (Reviews universe)
+// ─────────────────────────────────────────────────────────────
+function transitionNewspaper(onComplete) {
+  // Outer wrapper
+  const wrap = el('div', {
+    position: 'fixed',
+    inset: '0',
+    zIndex: ROOT_Z,
+    pointerEvents: 'none',
+    overflow: 'hidden',
+  });
+
+  // Ink panel — sweeps left → right like ink soaking newsprint
+  const ink = el('div', {
+    position: 'absolute',
+    inset: '0',
+    background: '#1a1209',
+    transform: 'translateX(-105%)',
+    transition: 'transform 0.55s cubic-bezier(.7,0,.2,1)',
+  });
+  wrap.appendChild(ink);
+
+  // Sepia flash layer
+  const sepia = el('div', {
+    position: 'absolute',
+    inset: '0',
+    background: '#f7f2e9',
+    opacity: '0',
+    transition: 'opacity 0.3s ease 0.45s',
+  });
+  wrap.appendChild(sepia);
+
+  // Masthead label
+  const label = el('div', {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%,-50%)',
+    fontFamily: "'Bebas Neue', sans-serif",
+    fontSize: 'clamp(2rem, 7vw, 5.5rem)',
+    letterSpacing: '0.08em',
+    color: '#f7f2e9',
+    opacity: '0',
+    whiteSpace: 'nowrap',
+    transition: 'opacity 0.3s ease 0.2s',
+    pointerEvents: 'none',
+    textAlign: 'center',
+  });
+  label.textContent = 'THE DAILY REVIEW';
+  wrap.appendChild(label);
+
+  document.body.appendChild(wrap);
+
+  requestAnimationFrame(() => {
+    ink.style.transform = 'translateX(0)';
+  });
+
+  setTimeout(() => {
+    label.style.opacity = '1';
+    sepia.style.opacity = '0.08';
+  }, 200);
+
+  setTimeout(() => onComplete?.(), 680);
+
+  setTimeout(() => {
+    ink.style.transition = 'transform 0.5s cubic-bezier(.7,0,.2,1)';
+    ink.style.transform = 'translateX(105%)';
+    sepia.style.opacity = '0';
+    label.style.opacity = '0';
+    setTimeout(() => wrap.remove(), 550);
+  }, 1050);
+}
+
+// ─────────────────────────────────────────────────────────────
 // Dispatcher
 // ─────────────────────────────────────────────────────────────
 export function runUniverseTransition(target, onComplete) {
@@ -294,6 +369,8 @@ export function runUniverseTransition(target, onComplete) {
       return transitionNoir(onComplete);
     case 'contact':
       return transitionLego(onComplete);
+    case 'reviews':
+      return transitionNewspaper(onComplete);
     default:
       onComplete?.();
   }

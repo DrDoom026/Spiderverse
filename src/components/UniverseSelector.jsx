@@ -6,6 +6,7 @@ import aboutBg from '../assets/about-sleeping.jpg';
 import projectsBg from '../assets/projects-logo.jpg';
 import galleryBg from '../assets/gallery-noir.jpg';
 import contactBg from '../assets/contact-lego.jpg';
+import reviewsBg from '../assets/reviews-card-bg.jpg';
 
 const UNIVERSES = [
   {
@@ -45,8 +46,20 @@ const UNIVERSES = [
     glow: 'card-glow-noir',
   },
   {
-    key: 'contact',
+    key: 'reviews',
     number: '04',
+    title: 'REVIEWS',
+    subtitle: 'The Daily Review',
+    description:
+      'A personal cinema archive. Film reviews typeset in ink — from every corner of the multiverse.',
+    bg: reviewsBg,
+    accent: '#c8b89a',
+    portalColor: '#c8b89a',
+    glow: 'card-glow-paper',
+  },
+  {
+    key: 'contact',
+    number: '05',
     title: 'CONTACT',
     subtitle: 'LEGO Spider-Man Universe',
     description:
@@ -71,7 +84,7 @@ const UniverseSelector = forwardRef(({ onNavigate }, ref) => {
   const handleCardClick = (u) => {
     // Per-universe dimensional travel — each portal animates uniquely
     runUniverseTransition(u.key, () => {
-      if (onNavigate && ['contact', 'gallery', 'projects', 'about'].includes(u.key)) {
+      if (onNavigate && ['contact', 'gallery', 'projects', 'about', 'reviews'].includes(u.key)) {
         onNavigate(u.key);
       }
     });

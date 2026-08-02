@@ -6,6 +6,7 @@ import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
 import Projects from './pages/Projects';
 import About from './pages/About';
+import Reviews from './pages/Reviews';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('landing');
@@ -31,6 +32,9 @@ function App() {
       )}
       {currentPage === 'projects' && (
         <Projects key="projects" onBack={() => navigateTo('landing')} />
+      )}
+      {currentPage === 'reviews' && (
+        <Reviews key="reviews" onBack={() => navigateTo('landing')} />
       )}
     </AnimatePresence>
   );

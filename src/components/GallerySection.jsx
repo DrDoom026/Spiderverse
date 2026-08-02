@@ -165,6 +165,28 @@ export default function GallerySection() {
           </div>
         </motion.div>
 
+        {/* Spider-Noir Quote — wind & rain */}
+        <motion.div
+          className="noir-quote-block"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+        >
+          <div className="noir-quote-block__line" aria-hidden="true" />
+          <blockquote className="noir-quote-block__text">
+            <span className="noir-quote-block__mark">"</span>
+            Wherever I go, the wind follows
+            <br />
+            <em>and the wind smells like rain.</em>
+            <span className="noir-quote-block__mark">"</span>
+          </blockquote>
+          <div className="noir-quote-block__attribution">
+            — Spider-Noir · Earth-90214
+          </div>
+          <div className="noir-quote-block__line" aria-hidden="true" />
+        </motion.div>
+
         {/* Second image — offset right with vertical text */}
         <motion.div
           className="noir-atmo__second"
