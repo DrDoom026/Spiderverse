@@ -216,14 +216,7 @@ export default function Reviews({ onBack }) {
                 >
                   The Daily Review
                 </motion.h1>
-                <motion.p
-                  className="reviews-masthead__subtitle"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.7, delay: 0.45 }}
-                >
-                  Personal Film Reviews by Nishchal Karn
-                </motion.p>
+
               </div>
 
               {/* Masthead meta row */}
