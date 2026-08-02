@@ -38,8 +38,7 @@ const UNIVERSES = [
     number: '03',
     title: 'GALLERY',
     subtitle: 'Spider Noir Universe',
-    description:
-      'Frames in black and white — photography, sketches, and quieter visual notes.',
+    description: 'Frames by my point of view.',
     bg: galleryBg,
     accent: '#E5E7EB',
     portalColor: '#9CA3AF',
@@ -50,8 +49,7 @@ const UNIVERSES = [
     number: '04',
     title: 'REVIEWS',
     subtitle: 'The Daily Review',
-    description:
-      'A personal cinema archive. Film reviews typeset in ink — from every corner of the multiverse.',
+    description: 'Personal archives.',
     bg: reviewsBg,
     accent: '#c8b89a',
     portalColor: '#c8b89a',
@@ -63,7 +61,7 @@ const UNIVERSES = [
     title: 'CONTACT',
     subtitle: 'LEGO Spider-Man Universe',
     description:
-      'Snap the pieces together — collaborate, conspire, or just say hello.',
+      'Snap the pieces together just say hello.',
     bg: contactBg,
     accent: '#FFC700',
     portalColor: '#FFC700',
