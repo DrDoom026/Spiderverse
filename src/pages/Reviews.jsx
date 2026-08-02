@@ -85,9 +85,6 @@ function ReviewArticle({ review, onBack }) {
         <div className="review-article__byline">
           <span>
             By <span className="review-article__byline-author">Nishchal Karn</span>
-            <span style={{ fontStyle: 'italic', fontFamily: 'var(--sans)', marginLeft: 8, opacity: 0.7 }}>
-              | Film Correspondent
-            </span>
           </span>
           <span className="review-article__byline-sep">·</span>
           <span>{review.publishDate || review.date}</span>
