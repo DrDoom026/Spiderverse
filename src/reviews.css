@@ -80,7 +80,7 @@
   background: var(--paper);
   border-bottom: 3px solid var(--ink);
   padding: 0;
-  margin-top: 0;
+  margin-top: 62px; /* clear the fixed navbar */
 }
 
 /* Top ticker row — flanking headlines */

@@ -50,7 +50,7 @@ function ReviewArticle({ review, onBack }) {
   return (
     <motion.div {...articleIn}>
       {/* Masthead stripe at top of article */}
-      <div className="reviews-masthead" style={{ position: 'sticky', top: 60, zIndex: 30 }}>
+      <div className="reviews-masthead" style={{ position: 'sticky', top: 62, zIndex: 30, marginTop: 62 }}>
         <div className="reviews-masthead__rule-top" />
         <div className="reviews-masthead__rule-thin" />
         <div className="reviews-masthead__meta" style={{ padding: '6px clamp(20px, 5vw, 64px)' }}>
@@ -208,36 +208,6 @@ export default function Reviews({ onBack }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
             >
-              {/* Top teaser row — flanking headlines like the Daily Bugle */}
-              <div className="reviews-masthead__ticker">
-                <div className="reviews-masthead__teaser reviews-masthead__teaser--left">
-                  <span className="reviews-masthead__teaser-headline">Into the Spider-Verse</span>
-                  <span className="reviews-masthead__teaser-sub">A masterpiece of animation confirmed</span>
-                  <span className="reviews-masthead__teaser-page">Page 1 · Full Review Inside</span>
-                </div>
-
-                {/* Center ornament */}
-                <div className="reviews-masthead__logo-zone">
-                  <div className="reviews-masthead__logo-dot" />
-                  <span style={{
-                    fontFamily: 'var(--display)',
-                    fontSize: 9,
-                    letterSpacing: '0.5em',
-                    color: 'var(--ink)',
-                    opacity: 0.55,
-                    textTransform: 'uppercase',
-                    whiteSpace: 'nowrap',
-                  }}>Est. 2026</span>
-                  <div className="reviews-masthead__logo-dot" />
-                </div>
-
-                <div className="reviews-masthead__teaser reviews-masthead__teaser--right">
-                  <span className="reviews-masthead__teaser-headline">Across the Spider-Verse</span>
-                  <span className="reviews-masthead__teaser-sub">Canon events & the weight of legacy</span>
-                  <span className="reviews-masthead__teaser-page">Page 2 · Full Review Inside</span>
-                </div>
-              </div>
-
               {/* Main title block */}
               <div className="reviews-masthead__title-block">
                 <motion.h1
