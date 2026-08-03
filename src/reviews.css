@@ -728,6 +728,70 @@
   }
 }
 
+@media (max-width: 640px) {
+  /* ── Article view: tighten vertical padding so content is visible ── */
+  .review-article {
+    padding: 24px 16px 80px;
+  }
+
+  /* Article cover: use portrait ratio for poster images on phones */
+  .review-article__cover {
+    aspect-ratio: 2 / 3;
+  }
+
+  /* Headline: reduce font floor so it doesn't overflow */
+  .review-article__headline {
+    font-size: clamp(2rem, 9vw, 3.5rem);
+  }
+
+  /* Masthead meta bar: stack vertically on phones */
+  .reviews-masthead__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 8px 16px;
+  }
+
+  .reviews-masthead__meta-center {
+    text-align: left;
+  }
+
+  /* Body text: readable size on small screens */
+  .review-article__body {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* Drop cap: scale down so it doesn't break layout */
+  .review-article__body > p:first-child::first-letter {
+    font-size: 3.8em;
+  }
+
+  /* Byline: stack vertically */
+  .review-article__byline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 10px 0;
+  }
+
+  .review-article__byline-sep {
+    display: none;
+  }
+
+  .review-article__rating-badge {
+    margin-left: 0;
+  }
+
+  /* Back button: avoid overlapping content */
+  .reviews-back {
+    top: auto;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 @media (max-width: 560px) {
   .reviews-masthead__ticker {
     grid-template-columns: 1fr;
@@ -741,14 +805,6 @@
   }
   .review-card:nth-child(n) {
     border-right: none;
-  }
-  .review-article__byline {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .review-article__rating-badge {
-    margin-left: 0;
   }
 }
 
